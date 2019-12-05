@@ -1,0 +1,28 @@
+@import url(./__commit-card/slider__commit-card.css);
+@import url(./__swiper/slider__swiper.css);
+@import url(./__commit-date/slider__commit-date.css);
+@import url(./__commit-email/slider__commit-email.css);
+@import url(./__commit-image/slider__commit-image.css);
+@import url(./__commit-name/slider__commit-name.css);
+@import url(./__commit-user/slider__commit-user.css);
+@import url(./__commit-text/slider__commit-text.css);
+@import url(./__git-button/slider__git-button.css);
+
+.slider {
+  position: relative;
+  background-color: #f5f6f7;
+  box-sizing: border-box;
+  padding: 72px 104px 62px 104px;
+}
+
+@media screen and (max-width: 1023px) {
+  .slider {
+    padding: 40px 40px 30px 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .slider {
+    padding: 32px 16px 32px 16px;
+  }
+}

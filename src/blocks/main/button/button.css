@@ -1,0 +1,28 @@
+.button {
+  display: flex;
+  align-items: center;
+  padding: 18px 40px;
+  border-radius: 100px;
+  color: white;
+  font-family: Roboto;
+  font-size: 1.12rem;
+  line-height: 1.33;
+  background-color: #2f71e5;
+  border: 0px;
+  cursor: pointer;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+}
+
+.button:hover {
+  background-color: #347eff;
+}
+
+.button:active {
+  background-color: #2a65cc;
+}
+
+.button:disabled {
+  color: #b6bcbf;
+  background-color: #e6e8eb;
+  box-shadow: none;
+}

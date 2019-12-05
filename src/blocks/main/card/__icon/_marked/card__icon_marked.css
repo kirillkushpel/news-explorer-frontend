@@ -1,0 +1,7 @@
+.card__icon.card__icon_marked {
+  background-image: url(../../../../../images/bookmark/marked.svg);
+}
+
+.card__icon.card__icon_marked:hover ~ .card__warning {
+  opacity: 0;
+}

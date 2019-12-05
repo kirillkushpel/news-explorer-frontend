@@ -1,0 +1,11 @@
+@import url(./_hide/auth-form__wrapper_hide.css);
+
+.auth-form__wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 200;
+  display: flex;
+}

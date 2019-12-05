@@ -1,0 +1,21 @@
+.button.slider__git-button {
+  display: none;
+  width: 100%;
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  margin-top: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  font-weight: 900;
+}
+
+.button.slider__git-button:hover {
+  background-color: white;
+}
+
+@media screen and (max-width: 767px) {
+  .button.slider__git-button {
+    display: block;
+  }
+}

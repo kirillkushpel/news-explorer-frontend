@@ -1,0 +1,28 @@
+@import url(./__menu/footer__menu.css);
+@import url(./__menu-item/footer__menu-item.css);
+@import url(./__links/footer__links.css);
+@import url(./__legal/footer__legal.css);
+@import url(./__social-icon/footer__social-icon.css);
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+@media screen and (max-width: 1023px) {
+  .footer {
+    height: 64px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer {
+    flex-wrap: wrap;
+    height: 224px;
+    align-items: flex-start;
+    margin-top: 20px;
+    padding: 0 16px 0 16px;
+  }
+}

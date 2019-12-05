@@ -1,0 +1,8 @@
+.slider__commit-image {
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  min-height: 64px;
+  border-radius: 50%;
+  margin-right: 16px;
+}

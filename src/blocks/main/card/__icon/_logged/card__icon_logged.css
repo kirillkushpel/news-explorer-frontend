@@ -1,0 +1,3 @@
+.card__icon.card__icon_logged:hover ~ .card__warning {
+  opacity: 0;
+}
