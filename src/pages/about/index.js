@@ -8,7 +8,6 @@ import modalsHandler from '../../blocks/main/modalsHandler'
 import Card from '../../blocks/main/card/card'
 import { loginForm, signupForm, regComplete } from '../../blocks/main/auth-form/auth-form'
 
-// Methods
 const swiper = new Swiper('.swiper-container', {
   updateOnWindowResize: true,
   slidesPerView: 3,

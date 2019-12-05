@@ -7,7 +7,6 @@ import Card from '../../blocks/main/card/card'
 import { loginForm, signupForm, regComplete } from '../../blocks/main/auth-form/auth-form'
 
 const cardIconDelete = new Card(document.querySelector('.storage'))
-// Methods
 
 window.onresize = () => {
   if (window.innerWidth > 767) mainMenu.close()
