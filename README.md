@@ -2,7 +2,8 @@
 
 Хост - https://news-explorer.ml
 
-Реализованы основные требования дипломного проекта https://code.s3.yandex.net/frontend-developer/landings/web-diploma-criteria/index.html
+Реализованы основные требования дипломного проекта
+ https://code.s3.yandex.net/frontend-developer/landings/web-diploma-criteria/index.html
 
 Установка проекта:
 
