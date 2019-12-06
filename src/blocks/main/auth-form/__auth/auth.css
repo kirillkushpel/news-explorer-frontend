@@ -1,6 +1,6 @@
-@import url(./_hide/auth-form__wrapper_hide.css);
+@import url(./_hide/auth_hide.css);
 
-.auth-form__wrapper {
+.auth {
   position: fixed;
   top: 0;
   left: 0;

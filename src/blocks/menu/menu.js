@@ -30,7 +30,7 @@ class Menu {
     if (this.menuMobile) this.menuControl.classList.add('menu__mobile_close_black');
     this.overlay.show()
     this.menu.classList.add(!this.menuMobile ? 'menu_on-top' : 'menu_on-top_black');
-    this.menuItems.classList.add('menu__items-list_show');
+    this.menuItems.classList.add('menu__items_show');
     if (this.menuMobile) this.menuItems.style.background = 'rgba(255,255,255,1)'
     this.menuOpened = true;
   }
@@ -40,7 +40,7 @@ class Menu {
     this.overlay.hide()
     this.menu.classList.remove('menu_on-top');
     this.menu.classList.remove('menu_on-top_black');
-    this.menuItems.classList.remove('menu__items-list_show');
+    this.menuItems.classList.remove('menu__items_show');
     if (this.menuMobile) this.menuItems.style.background = 'rgba(255,255,255,0)'
     this.menuOpened = false;
   }
@@ -51,7 +51,7 @@ const overlay = new Overlay();
 export const mainMenu = new Menu(
   {
     control: '.menu__mobile',
-    items: '.menu__items-list',
+    items: '.menu__items',
     menu: '.menu',
   },
   overlay,

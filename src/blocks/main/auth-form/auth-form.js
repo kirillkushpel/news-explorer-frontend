@@ -15,18 +15,18 @@ class AuthForm {
   }
 
   open() {
-    this.element.classList.remove('auth-form__wrapper_hide');
+    this.element.classList.remove('auth_hide');
     document.body.classList.add('scroll-lock');
   }
 
   close() {
     document.body.classList.remove('scroll-lock');
-    this.element.classList.add('auth-form__wrapper_hide');
+    this.element.classList.add('auth_hide');
   }
 
   openNext() {
-    this.element.classList.add('auth-form__wrapper_hide');
-    this.next.classList.remove('auth-form__wrapper_hide');
+    this.element.classList.add('auth_hide');
+    this.next.classList.remove('auth_hide');
   }
 }
 
