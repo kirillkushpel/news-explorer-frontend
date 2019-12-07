@@ -1,0 +1,14 @@
+.slider__commit-name {
+  font-family: "Roboto Slab";
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.87rem;
+  margin: 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .slider__commit-name {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+}

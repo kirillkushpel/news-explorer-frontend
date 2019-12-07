@@ -1,0 +1,7 @@
+.slider__commit-text {
+  font-family: Roboto;
+  font-size: 1rem;
+  line-height: 1.37;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

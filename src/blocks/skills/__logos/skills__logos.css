@@ -1,0 +1,28 @@
+.skills__logos {
+  display: grid;
+  grid-template-columns: 120px 120px 120px 120px;
+  column-gap: 40px;
+  row-gap: 40px;
+  margin: 0;
+  margin: auto;
+}
+
+@media screen and (max-width: 1160px) {
+  .skills__logos {
+    display: flex;
+    margin-top: 40px;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .skills__logos {
+    width: auto;
+    display: grid;
+    margin: 40px auto 0 auto;
+    grid-template-columns: 120px 120px;
+    column-gap: 40px;
+    row-gap: 40px;
+  }
+}

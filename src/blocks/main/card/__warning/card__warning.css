@@ -1,0 +1,33 @@
+@import url(./_visible/card__warning_visible.css);
+
+.card__warning {
+  display: flex;
+  position: absolute;
+  top: 24px;
+  right: 72px;
+  background-color: white;
+  margin: 0;
+  border-radius: 10px;
+  height: 40px;
+  padding: 0 12px 0 12px;
+  color: black;
+  font-size: 0.65rem;
+  font-weight: 900;
+  align-items: center;
+  max-width: 50%;
+  opacity: 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .card__warning {
+    top: 8px;
+    right: 56px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card__warning {
+    top: 16px;
+    right: 64px;
+  }
+}

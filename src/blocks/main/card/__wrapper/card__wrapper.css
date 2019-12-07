@@ -1,0 +1,12 @@
+.card__wrapper {
+  margin: 0 24px 0 24px;
+}
+
+@media screen and (max-width: 1023px) {
+  .card__wrapper {
+    margin: 0 16px 0 16px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+}

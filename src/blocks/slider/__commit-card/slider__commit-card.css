@@ -1,0 +1,27 @@
+.slider__commit-card {
+  overflow: hidden;
+  display: block;
+  min-height: 288px;
+  max-height: 288px;
+  border-radius: 16px;
+  background-color: white;
+  text-decoration: none;
+  padding: 24px;
+  color: black;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1023px) {
+  .slider__commit-card {
+    min-height: 242px;
+    max-height: 242px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .slider__commit-card {
+    min-height: 264px;
+    max-height: 264px;
+    padding: 16px;
+  }
+}

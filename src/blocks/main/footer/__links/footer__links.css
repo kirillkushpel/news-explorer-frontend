@@ -1,0 +1,22 @@
+.footer__links {
+  margin: 0;
+  padding-right: 104px;
+  color: #b6bcbf;
+  font-size: 1rem;
+  width: 20%;
+  text-align: right;
+}
+
+@media screen and (max-width: 1023px) {
+  .footer__links {
+    padding-right: 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer__links {
+    order: 2;
+    width: 30%;
+    padding: 0;
+  }
+}

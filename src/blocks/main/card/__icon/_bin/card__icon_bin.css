@@ -1,0 +1,13 @@
+.card__icon.card__icon_bin {
+  background-image: url(../../../../../images/bin.svg);
+}
+
+.card__icon.card__icon_bin:hover {
+  background-image: url(../../../../../images/bin-active.svg);
+}
+
+/* @media screen and (max-width: 767px) {
+  .card__icon.card__icon_bin:hover ~ .card__warning {
+    opacity: 0;
+  }
+} */

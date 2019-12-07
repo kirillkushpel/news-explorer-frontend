@@ -1,0 +1,41 @@
+@import url(./_marked/card__icon_marked.css);
+@import url(./_logged/card__icon_logged.css);
+@import url(./_bin/card__icon_bin.css);
+
+.card__icon {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url(../../../../images/bookmark/normal.svg);
+  z-index: 5;
+  cursor: pointer;
+}
+
+.card__icon:hover {
+  background-image: url(../../../../images/bookmark/hover.svg);
+  z-index: 5;
+}
+
+.card__icon:hover ~ .card__warning {
+  opacity: 1;
+  transition: 0.3s;
+}
+
+@media screen and (max-width: 1023px) {
+  .card__icon {
+    top: 8px;
+    right: 8px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card__icon {
+    top: 16px;
+    right: 16px;
+  }
+}

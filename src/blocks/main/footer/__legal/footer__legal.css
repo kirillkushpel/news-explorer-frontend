@@ -1,0 +1,22 @@
+.footer__legal {
+  margin: 0;
+  padding-left: 104px;
+  color: #b6bcbf;
+  font-size: 1rem;
+  width: 20%;
+}
+
+@media screen and (max-width: 1023px) {
+  .footer__legal {
+    padding-left: 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer__legal {
+    order: 3;
+    width: 100%;
+    padding: 0;
+    margin-top: 20px;
+  }
+}
