@@ -14,8 +14,7 @@ export const modalsHandler = new MainHandler(
         if (event.code === 'Escape') {
           const modals = Array.from(event.target.querySelectorAll('.auth'));
           modals.find(
-            (element) => Array.from(element.classList)
-              .includes('auth_hide') ? false : true,
+            (element) => !Array.from(element.classList).includes('auth_hide'),
           ).classList.add('auth_hide')
           document.body.classList.remove('scroll-lock')
         }
