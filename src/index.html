@@ -20,13 +20,12 @@
       <a href="./" class="menu__logo">News Explorer</a>
       <div class="menu__mobile" id="mobile-menu"></div>
       <ul class="menu__items">
-        <li class="menu__items-single-item menu__items-single-item_selected"><a href="./"
-                                                                                class="menu__link menu__link_selected">Главная</a>
+        <li class="menu__items-single-item menu__items-single-item_selected"><a href="./" class="menu__link menu__link_selected">Главная</a>
         </li>
         <li class="menu__items-single-item"><a href="./about/" class="menu__link">О проекте</a></li>
-        <li class="menu__items-single-item"><a href="./articles/" class="menu__link">Сохраненные статьи</a></li>
+        <li class="menu__items-single-item" id="menu-saved-articles"><a href="./articles/" class="menu__link">Сохраненные статьи</a></li>
         <li class="menu__items-single-item">
-            <span class="menu__link menu__link_logged">Юзер
+            <span class="menu__link menu__link_logged"><span id="shown-user-name"></span>
               <span class="menu__logout"></span>
             </span>
         </li>
@@ -44,96 +43,45 @@
     </div>
   </header>
   <section class=preloader>
-    <div class="preloader__message" id="preloader-searching">
+    <!-- Чтобы скрыть прелоадер добавьте класс preloader__message_hide -->
+    <div class="preloader__message preloader__message_hide" id="preloader-searching">
       <i class="circle-preloader"></i>
       <h5 class="preloader__subtitle">Идет поиск новостей...</h5>
     </div>
-    <div class="preloader__message preloader__hide" id="preloader-not-found">
+    <!-- Чтобы показать ошибку поиска уберите класс preloader__message_hide -->
+    <div class="preloader__message preloader__message_hide" id="preloader-not-found">
       <img class="preloader__icon" src="<%= require('./images/not-found.svg')%>" alt="Ничего не найдено.">
       <h4 class="preloader__title">Ничего не найдено</h4>
       <h5 class="preloader__subtitle">К сожалению по вашему запросу ничего не найдено.</h5>
     </div>
+    <div class="preloader__message preloader__message_hide" id="preloader-server-error">
+      <img class="preloader__icon" src="<%= require('./images/not-found.svg')%>" alt="Ничего не найдено.">
+      <h4 class="preloader__title">Сервер не отвечает</h4>
+      <h5 class="preloader__subtitle">Повторите запрос немного позже.</h5>
+    </div>
   </section>
-  <main class="results">
+  <main class="results results_hide">
     <h3 class="results__title">Результаты поиска</h3>
     <div class="results__news">
-      <a href="#" class="card">
-        <div class="card__body">
-          <div class="card__img"></div>
-          <div class="card__icon"></div>
-          <p class="card__warning">Войдите, чтобы сохранять статьи</p>
-          <div class="card__wrapper">
-            <p class="card__date">2 августа, 2019</p>
-            <h4 class="card__title">What is Lorem Ipsum?</h4>
-            <p class="card__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-              leap into electronic typesetting, remaining essentially unchanged.
-            </p>
-            <p class="card__text">It was popularised in the 1960s with the release of Letraset sheets containing Lorem
-              Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
-              of Lorem Ipsum.</p>
+      <div id="card-sample">
+        <a href="#" class="card">
+          <div class="card__body">
+            <div class="card__img"></div>
+            <div class="card__icon"></div>
+            <p class="card__warning">Войдите, чтобы сохранять статьи</p>
+            <div class="card__wrapper">
+              <p class="card__date"></p>
+              <h4 class="card__title"></h4>
+              <p class="card__text">
+              </p>
+              <p class="card__text"></p>
+            </div>
           </div>
-        </div>
-        <p class="card__src">lipsum.com</p>
-      </a>
-      <a href="#" class="card">
-        <div class="card__body">
-          <div class="card__img"></div>
-          <div class="card__icon"></div>
-          <p class="card__warning">Войдите, чтобы сохранять статьи</p>
-          <div class="card__wrapper">
-            <p class="card__date">2 августа, 2019</p>
-            <h4 class="card__title">Why do we use it?</h4>
-            <p class="card__text">It is a long established fact that a reader will be distracted by the readable content
-              of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-              distribution of letters, as opposed to using 'Content here, content here', making it look like readable
-              English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model
-              text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions
-              have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-            </p>
-          </div>
-        </div>
-        <p class="card__src">lipsum.com</p>
-      </a>
-      <a href="#" class="card">
-        <div class="card__body">
-          <div class="card__img"></div>
-          <div class="card__icon card__icon_marked"></div>
-          <p class="card__warning">Войдите, чтобы сохранять статьи</p>
-          <div class="card__wrapper">
-            <p class="card__date">2 августа, 2019</p>
-            <h4 class="card__title">Where does it come from?</h4>
-            <p class="card__text">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
-              piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin
-              professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words,
-              consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature,
-              discovered the undoubtable source.
-            </p>
-          </div>
-        </div>
-        <p class="card__src">lipsum.com</p>
-      </a>
-      <a href="#" class="card">
-        <div class="card__body">
-          <div class="card__img"></div>
-          <div class="card__icon card__icon_marked"></div>
-          <p class="card__warning">Войдите, чтобы сохранять статьи</p>
-          <div class="card__wrapper">
-            <p class="card__date">2 августа, 2019</p>
-            <h4 class="card__title">Where can I get some?</h4>
-            <p class="card__text">There are many variations of passages of Lorem Ipsum available, but the majority have
-              suffered alteration in some form, by injected humour, or randomised words which don't look even slightly
-              believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything
-              embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat
-              predefined chunks as necessary, making this the first true generator on the Internet. I
-            </p>
-          </div>
-        </div>
-        <p class="card__src">lipsum.com</p>
-      </a>
+          <p class="card__src"></p>
+        </a>
+      </div>
     </div>
-    <button class="button results__button">Показать еще</button>
+    <button class="button results__button" id="show-more">Показать еще</button>
   </main>
   <section class="about">
     <img class="about__photo" src="<%= require('./images/selfie.jpg')%>" alt="Фото автора">
@@ -203,7 +151,8 @@
       <h4 class="auth-form__title">Регистрация</h4>
       <span class="auth-form__subtitle">E-mail</span>
       <input class="auth-form__input" name="email" placeholder="Введите почту" type="email" required>
-      <span class="auth-form__error-message auth-form__error-message_hide" id="error-email">Введите корректный email!</span>
+      <span class="auth-form__error-message auth-form__error-message_hide"
+            id="error-email">Введите корректный email!</span>
       <span class="auth-form__subtitle">Пароль</span>
       <input class="auth-form__input" name="password" type="password" placeholder="Введите пароль" minlength="8"
              required>
@@ -236,6 +185,10 @@
   </section>
 
   <div class="overlay"></div>
+  <div class="sys-error" id="system-error">
+    <p class="sys-error__message" id="system-error-message"></p>
+    <p class="sys-error__message sys-error__message_sub">Нажмите чтобы закрыть</p>
+  </div>
 </div>
 <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 </body>

@@ -25,12 +25,13 @@
           <li class="menu__items-single-item">
             <a href="../about/" class="menu__link  menu__link_black">О проекте</a>
           </li>
-          <li class="menu__items-single-item menu__items-single-item_selected-black"><a href="./"
-              class="menu__link menu__link_selected-black">Сохраненные
-              статьи</a></li>
+          <li class="menu__items-single-item menu__items-single-item_selected-black" id="menu-saved-articles">
+            <a href="./" class="menu__link menu__link_selected-black">Сохраненные статьи</a>
+          </li>
           <li class="menu__items-single-item">
             <span class="menu__link menu__link_logged  menu__link_logged-black">
-              Юзер <span class="menu__logout menu__logout_black"></span>
+              <span id="shown-user-name"></span>
+              <span class="menu__logout menu__logout_black"></span>
             </span>
           </li>
         </ul>
@@ -38,82 +39,28 @@
     </header>
     <section class="saved-title">
       <h5 class="saved-title__subtitle">Сохранённые статьи</h5>
-      <h1 class="saved-title__header">Юзер, у вас 5 сохраненных статей</h1>
-      <p class="saved-title__keywords">По ключевым словам: <b>Природа, Тайга</b> и <b>2 другим</b></p>
+      <h1 class="saved-title__header">, у вас <span class="articles-qty"></span></h1>
+      <p class="saved-title__keywords">По ключевым словам: <b><span class="first-word"></span><span class="second-word"></span></b><span
+        class="word-tail"> и <b><span class="and-more"></span>
+            другим</b></span></p>
     </section>
     <main class="storage">
+      <div id="card-sample">
       <a href="#" class="card">
         <div class="card__body">
           <div class="card__img"></div>
           <div class="card__icon card__icon_bin"></div>
           <p class="card__warning">Убрать из сохраненных</p>
-          <p class="card__keyword">Тайга</p>
+          <p class="card__keyword"></p>
           <div class="card__wrapper">
-            <p class="card__date">2 августа, 2019</p>
-            <h4 class="card__title">What is Lorem Ipsum?</h4>
-            <p class="card__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-              leap into electronic typesetting, remaining essentially unchanged.
-            </p>
+            <p class="card__date"></p>
+            <h4 class="card__title"></h4>
+            <p class="card__text"></p>
           </div>
         </div>
-        <p class="card__src">lipsum.com</p>
+        <p class="card__src"></p>
       </a>
-      <a href="#" class="card">
-        <div class="card__body">
-          <div class="card__img"></div>
-          <div class="card__icon card__icon_bin"></div>
-          <p class="card__warning">Убрать из сохраненных</p>
-          <p class="card__keyword">Ночь</p>
-          <div class="card__wrapper">
-            <p class="card__date">2 августа, 2019</p>
-            <h4 class="card__title">What is Lorem Ipsum?</h4>
-            <p class="card__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-              leap into electronic typesetting, remaining essentially unchanged.
-            </p>
-          </div>
-        </div>
-        <p class="card__src">lipsum.com</p>
-      </a>
-      <a href="#" class="card">
-        <div class="card__body">
-          <div class="card__img"></div>
-          <div class="card__icon card__icon_bin"></div>
-          <p class="card__warning">Убрать из сохраненных</p>
-          <p class="card__keyword">Улица</p>
-          <div class="card__wrapper">
-            <p class="card__date">2 августа, 2019</p>
-            <h4 class="card__title">What is Lorem Ipsum?</h4>
-            <p class="card__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-              leap into electronic typesetting, remaining essentially unchanged.
-            </p>
-          </div>
-        </div>
-        <p class="card__src">lipsum.com</p>
-      </a>
-      <a href="#" class="card">
-        <div class="card__body">
-          <div class="card__img"></div>
-          <div class="card__icon card__icon_bin"></div>
-          <p class="card__warning">Убрать из сохраненных</p>
-          <p class="card__keyword">Фонарь</p>
-          <div class="card__wrapper">
-            <p class="card__date">2 августа, 2019</p>
-            <h4 class="card__title">What is Lorem Ipsum?</h4>
-            <p class="card__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-              leap into electronic typesetting, remaining essentially unchanged.
-            </p>
-          </div>
-        </div>
-        <p class="card__src">lipsum.com</p>
-      </a>
+      </div>
     </main>
     <footer class="footer">
       <p class="footer__legal">© 2019 Kirill Kushpel</p>
@@ -200,6 +147,10 @@
     </section>
 
     <div class="overlay"></div>
+    <div class="sys-error" id="system-error">
+      <p class="sys-error__message" id="system-error-message"></p>
+      <p class="sys-error__message sys-error__message_sub">Нажмите чтобы закрыть</p>
+    </div>
   </div>
   <script src="<%= htmlWebpackPlugin.files.chunks.articles.entry %>"></script>
 </body>

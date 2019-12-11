@@ -2,14 +2,27 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable class-methods-use-this */
 
-import AuthForm from '../blocks/main/auth-form/auth-form'
+import Auth from '../blocks/main/auth-form/auth-form'
 import config from './config'
 
+const loginForm = new Auth(
+  document.querySelector('#login-form'),
+  '#signup-form',
+)
+
+const signupForm = new Auth(
+  document.querySelector('#signup-form'),
+  '#login-form',
+)
+
+const regComplete = new Auth(
+  document.querySelector('#signup-ok'),
+  '#login-form',
+)
 
 class Explorer {
   constructor() {
     this.userMenuHandler = () => loginForm.open()
-    this.menuCustomizer()
     this._callExt = null
     this.updateView = new Event('updateView', { bubbles: true })
   }
@@ -22,7 +35,6 @@ class Explorer {
   isLogged() {
     return Boolean(this.userName)
   }
-
 
   logout() {
     fetch(config.logout,
@@ -40,7 +52,6 @@ class Explorer {
       })
       .then(() => {
         localStorage.clear()
-        this.menuCustomizer()
         document.dispatchEvent(this.updateView)
       })
       .catch((e) => console.log(e.message))
@@ -71,7 +82,6 @@ class Explorer {
             localStorage.setItem('user', userInfo.user)
             loginForm.enableSubmitButton()
             loginForm.close()
-            this.menuCustomizer()
             document.dispatchEvent(this.updateView)
           })
           .catch((e) => console.log(e.message))
@@ -99,7 +109,7 @@ class Explorer {
       })
       .then(() => {
         signupForm.close()
-        regCompleteForm.open()
+        regComplete.open()
         return Promise.resolve()
       })
       .catch((err) => {
