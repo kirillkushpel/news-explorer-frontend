@@ -5,8 +5,8 @@ import './index.css'
 import Swiper from 'swiper'
 import { menuHandler, mainMenu } from '../../blocks/menu/menu'
 import modalsHandler from '../../blocks/main/modalsHandler'
-import Card from '../../blocks/main/card/card'
-import { loginForm, signupForm, regComplete } from '../../blocks/main/auth-form/auth-form'
+import apiEx from '../../modules/api-explorer'
+import CommitLoader from '../../modules/commit-loader'
 
 const swiper = new Swiper('.swiper-container', {
   updateOnWindowResize: true,
@@ -40,6 +40,9 @@ const swiper = new Swiper('.swiper-container', {
     prevEl: '.swiper-button-prev',
   },
 })
+
+const commits = new CommitLoader(swiper.update.bind(swiper))
+
 
 window.onresize = () => {
   if (window.innerWidth > 767) mainMenu.close()

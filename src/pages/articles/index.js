@@ -3,10 +3,15 @@ import './index.css'
 /* eslint-disable no-unused-vars */
 import { menuHandler, mainMenu } from '../../blocks/menu/menu'
 import modalsHandler from '../../blocks/main/modalsHandler'
-import Card from '../../blocks/main/card/card'
-import { loginForm, signupForm, regComplete } from '../../blocks/main/auth-form/auth-form'
+import apiEx from '../../modules/api-explorer'
+import Collection from '../../modules/collection'
 
-const cardIconDelete = new Card(document.querySelector('.storage'))
+const myCollection = new Collection(apiEx.isLogged.bind(apiEx),
+  apiEx.getAllArticles.bind(apiEx),
+  apiEx.deleteArticle.bind(apiEx),
+  apiEx.userName)
+
+
 
 window.onresize = () => {
   if (window.innerWidth > 767) mainMenu.close()
