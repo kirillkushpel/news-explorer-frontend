@@ -2,20 +2,20 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable class-methods-use-this */
 
-import Auth from '../blocks/main/auth-form/auth-form'
+import AuthForm from '../blocks/main/auth-form/auth-form'
 import config from './config'
 
-const loginForm = new Auth(
+const loginForm = new AuthForm(
   document.querySelector('#login-form'),
   '#signup-form',
 )
 
-const signupForm = new Auth(
+const signupForm = new AuthForm(
   document.querySelector('#signup-form'),
   '#login-form',
 )
 
-const regComplete = new Auth(
+const regCompleteForm = new AuthForm(
   document.querySelector('#signup-ok'),
   '#login-form',
 )
@@ -23,6 +23,7 @@ const regComplete = new Auth(
 class Explorer {
   constructor() {
     this.userMenuHandler = () => loginForm.open()
+    this.menuCustomizer()
     this._callExt = null
     this.updateView = new Event('updateView', { bubbles: true })
   }
@@ -34,6 +35,23 @@ class Explorer {
 
   isLogged() {
     return Boolean(this.userName)
+  }
+
+  menuCustomizer() {
+    const shownName = document.querySelector('#shown-user-name')
+    if (!this.userName) {
+      if (document.location.pathname === '/articles/') document.location.href = '../'
+      shownName.textContent = 'Авторизуйтесь'
+      shownName.addEventListener('click', this.userMenuHandler)
+      shownName.parentNode.querySelector('.menu__logout').style.display = 'none'
+      document.querySelector('#menu-saved-articles').style.display = 'none'
+    } else {
+      shownName.textContent = this.userName
+      shownName.parentNode.querySelector('.menu__logout').style.display = 'inline-block'
+      shownName.removeEventListener('click', this.userMenuHandler)
+      shownName.addEventListener('click', () => this.logout())
+      document.querySelector('#menu-saved-articles').style.display = 'flex'
+    }
   }
 
   logout() {
@@ -52,6 +70,7 @@ class Explorer {
       })
       .then(() => {
         localStorage.clear()
+        this.menuCustomizer()
         document.dispatchEvent(this.updateView)
       })
       .catch((e) => console.log(e.message))
@@ -82,6 +101,7 @@ class Explorer {
             localStorage.setItem('user', userInfo.user)
             loginForm.enableSubmitButton()
             loginForm.close()
+            this.menuCustomizer()
             document.dispatchEvent(this.updateView)
           })
           .catch((e) => console.log(e.message))
@@ -109,7 +129,7 @@ class Explorer {
       })
       .then(() => {
         signupForm.close()
-        regComplete.open()
+        regCompleteForm.open()
         return Promise.resolve()
       })
       .catch((err) => {

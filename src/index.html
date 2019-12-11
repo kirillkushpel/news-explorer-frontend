@@ -3,10 +3,9 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="author" content="KIrill Kushpel">
+  <meta name="author" content="Alexey Tsitskun">
   <meta name="description" content="Diploma project / Articles saver">
   <title>News Explorer</title>
   <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
@@ -14,180 +13,189 @@
 </head>
 
 <body>
-<div class="root">
-  <header class="header">
-    <nav class="menu">
-      <a href="./" class="menu__logo">News Explorer</a>
-      <div class="menu__mobile" id="mobile-menu"></div>
-      <ul class="menu__items">
-        <li class="menu__items-single-item menu__items-single-item_selected"><a href="./" class="menu__link menu__link_selected">Главная</a>
-        </li>
-        <li class="menu__items-single-item"><a href="./about/" class="menu__link">О проекте</a></li>
-        <li class="menu__items-single-item" id="menu-saved-articles"><a href="./articles/" class="menu__link">Сохраненные статьи</a></li>
-        <li class="menu__items-single-item">
-            <span class="menu__link menu__link_logged"><span id="shown-user-name"></span>
-              <span class="menu__logout"></span>
-            </span>
-        </li>
-      </ul>
-    </nav>
-    <div class=header__title-wrapper>
-      <h1 class="header__title">Что в мире творится?</h1>
-      <h3 class="header__subtitle">Находите самые свежие статьи на любую тему
-        и сохраняйте в своём личном кабинете.
-      </h3>
-      <form class="header__form" name="news-finder" method="POST">
-        <input class="header__form-input" type="text" name="search" placeholder="Введите тему новости" required/>
-        <button class="button header__button" type="submit">Искать</button>
-      </form>
-    </div>
-  </header>
-  <section class=preloader>
-    <!-- Чтобы скрыть прелоадер добавьте класс preloader__message_hide -->
-    <div class="preloader__message preloader__message_hide" id="preloader-searching">
-      <i class="circle-preloader"></i>
-      <h5 class="preloader__subtitle">Идет поиск новостей...</h5>
-    </div>
-    <!-- Чтобы показать ошибку поиска уберите класс preloader__message_hide -->
-    <div class="preloader__message preloader__message_hide" id="preloader-not-found">
-      <img class="preloader__icon" src="<%= require('./images/not-found.svg')%>" alt="Ничего не найдено.">
-      <h4 class="preloader__title">Ничего не найдено</h4>
-      <h5 class="preloader__subtitle">К сожалению по вашему запросу ничего не найдено.</h5>
-    </div>
-    <div class="preloader__message preloader__message_hide" id="preloader-server-error">
-      <img class="preloader__icon" src="<%= require('./images/not-found.svg')%>" alt="Ничего не найдено.">
-      <h4 class="preloader__title">Сервер не отвечает</h4>
-      <h5 class="preloader__subtitle">Повторите запрос немного позже.</h5>
-    </div>
-  </section>
-  <main class="results results_hide">
-    <h3 class="results__title">Результаты поиска</h3>
-    <div class="results__news">
-      <div id="card-sample">
-        <a href="#" class="card">
-          <div class="card__body">
-            <div class="card__img"></div>
-            <div class="card__icon"></div>
-            <p class="card__warning">Войдите, чтобы сохранять статьи</p>
-            <div class="card__wrapper">
-              <p class="card__date"></p>
-              <h4 class="card__title"></h4>
-              <p class="card__text">
-              </p>
-              <p class="card__text"></p>
-            </div>
-          </div>
-          <p class="card__src"></p>
-        </a>
+<div id="scroll" class="scroll-lock">
+  <div class="root">
+    <header class="header">
+      <nav class="menu">
+        <a href="./" class="menu__logo">News Explorer</a>
+        <div class="menu__mobile" id="mobile-menu"></div>
+        <ul class="menu__items-list">
+          <li class="menu__items-single-item menu__items-single-item_selected"><a href="./"
+                                                                                  class="menu__link menu__link_selected">Главная</a></li>
+          <li class="menu__items-single-item"><a href="./about/" class="menu__link">О проекте</a></li>
+          <li class="menu__items-single-item" id="menu-saved-articles"><a href="./articles/"
+                                                                          class="menu__link">Сохраненные статьи</a></li>
+          <li class="menu__items-single-item">
+              <span class="menu__link menu__link_logged" id="user-area"><span id="shown-user-name"></span>
+                <span class="menu__logout"></span>
+              </span>
+          </li>
+        </ul>
+      </nav>
+      <div class=header__title-wrapper>
+        <h1 class="header__title">Что в мире творится?</h1>
+        <h3 class="header__subtitle">Находите самые свежие статьи на любую тему
+          и сохраняйте в своём личном кабинете.
+        </h3>
+        <form novalidate class="header__form" name="news-finder" method="POST">
+          <input class="header__form-input" type="text" name="search" placeholder="Введите тему новости" required />
+          <button class="button header__button" id="search-the-news" type="submit">Искать</button>
+        </form>
       </div>
-    </div>
-    <button class="button results__button" id="show-more">Показать еще</button>
-  </main>
-  <section class="about">
-    <img class="about__photo" src="<%= require('./images/selfie.jpg')%>" alt="Фото автора">
-    <div>
-      <h3 class="about__title">Об авторе</h3>
-      <p class="about__text">
-        Vivamus sed volutpat odio. Praesent placerat gravida erat, in ornare ex. Nullam vitae tellus euismod, egestas
-        diam vel, maximus orci. Nulla fringilla, enim ut pharetra rhoncus, arcu enim aliquet turpis, ac tempus dolor
-        lacus a velit. Donec semper velit eu volutpat bibendum. In ultricies dolor quis neque pellentesque pharetra.
-        Donec nibh urna, suscipit in feugiat at, facilisis et turpis. Fusce blandit tincidunt libero, sed ornare sapien
-        tincidunt nec. Curabitur quis fermentum felis.
+    </header>
+    <section class=preloader>
+      <!-- Чтобы скрыть прелоадер добавьте класс preloader__message_hide -->
+      <div class="preloader__message preloader__message_hide" id="preloader-searching">
+        <i class="circle-preloader"></i>
+        <h5 class="preloader__subtitle">Идет поиск новостей...</h5>
+      </div>
+      <!-- Чтобы показать ошибку поиска уберите класс preloader__message_hide -->
+      <div class="preloader__message preloader__message_hide" id="preloader-not-found">
+        <img class="preloader__icon" src="<%= require('./images/not-found.svg')%>" alt="Ничего не найдено.">
+        <h4 class="preloader__title">Ничего не найдено</h4>
+        <h5 class="preloader__subtitle">К сожалению по вашему запросу ничего не найдено.</h5>
+      </div>
+      <div class="preloader__message preloader__message_hide" id="preloader-server-error">
+        <img class="preloader__icon" src="<%= require('./images/not-found.svg')%>" alt="Ничего не найдено.">
+        <h4 class="preloader__title">Сервер не отвечает</h4>
+        <h5 class="preloader__subtitle">Повторите запрос немного позже.</h5>
+      </div>
+    </section>
+    <main class="results results_hide">
+      <h3 class="results__title">Результаты поиска</h3>
+      <div class="results__news">
+        <template id="card-sample">
+          <a href="" class="card" target="_blank">
+            <div class="card__upper-body">
+              <div class="card__pic"></div>
+              <div class="card__icon"></div>
+              <p class="card__warning">Войдите, чтобы сохранять статьи</p>
+              <div class="card__wrapper">
+                <p class="card__date"></p>
+                <h4 class="card__title"></h4>
+                <p class="card__text"></p>
+              </div>
+            </div>
+            <p class="card__src"></p>
+          </a>
+        </template>
+      </div>
+      <button class="button results__button" id="show-more">Показать еще</button>
+    </main>
+    <section class="about">
+      <img class="about__photo" src="<%= require('./images/selfie.jpg')%>" alt="Фото автора">
+      <div>
+        <h3 class="about__title">Об авторе</h3>
+        <p class="about__text">
+          Здравствуйте, меня зовут Алексей. Я прошёл курсы веб-разработчика в Яндекс.Практикум, где изучил HTML, CSS,
+          JavaScript, Node.js и основы работы с MongoDB.
+        </p>
+        <p class="about__text">
+          За время обучения я выполнял проектные работы по адаптивной верстке, асинхронным запросам к серверу,
+          построению REST API, регистрации и авторизации пользователей на сайте. И, поверьте, я выполнял эти работы
+          хорошо, потому что обожаю работать с кодом.
+        </p>
+        <p class="about__text">
+          Сейчас я помогаю в качестве старшего студента младшему потоку Яндекс.Практикума, что дает бесценный
+          менторский
+          опыт.
+        </p>
+      </div>
+    </section>
+    <footer class="footer">
+      <p class="footer__legal">© 2019 derYpsilon</p>
+      <nav>
+        <ul class="footer__menu">
+          <li class="footer__menu-item"><a href="./">Главная</a></li>
+          <li class="footer__menu-item"><a href="./about/">О проекте</a></li>
+          <li class="footer__menu-item"><a href="https://praktikum.yandex.ru" target="_blank">Яндекс.Практикум</a>
+          </li>
+        </ul>
+      </nav>
+      <p class="footer__links">
+        <a href="https://github.com/derYpsilon/" class="footer__social-icon" target="_blank">
+          <img src="<%= require('./images/social/git.svg')%>" alt="GitHub Logo">
+        </a>
+        <a href="https://facebook.com" class="footer__social-icon" target="_blank">
+          <img src="<%= require('./images/social/facebook.svg')%>" alt="Facebook Logo">
+        </a>
       </p>
-      <p class="about__text">
-        Quisque urna magna, molestie id nisl vitae, bibendum auctor sem. Aliquam efficitur orci elit, lacinia fringilla
-        nibh aliquet non. Morbi consectetur tincidunt dui in rhoncus. Vestibulum imperdiet luctus sodales. Class aptent
-        taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed vitae tincidunt sem.
-      </p>
+    </footer>
+  </div>
+  <!-- Сервисная часть с оверлеем и формами -->
+  <div id="service-area">
+    <section class="service-wrapper service-wrapper_hide" id="login-form">
+      <form class="auth-form" name="login">
+        <div class="auth-form__close" id="close-login-form"></div>
+        <h4 class="auth-form__title">Вход</h4>
+        <span class="auth-form__subtitle">E-mail</span>
+        <input class="auth-form__input" name="email" id="email" type="email" placeholder="Введите почту" required>
+        <span class="auth-form__error-message  auth-form__error-message_hide" id="error-email">
+            Введите корректный адрес e-mail
+          </span>
+        <span class="auth-form__subtitle">Пароль</span>
+        <input class="auth-form__input" name="password" id="password" type="password" placeholder="Введите пароль"
+               required>
+        <span class="auth-form__error-message auth-form__error-message_hide" id="error-password">
+            Поле не может быть пустым!
+          </span>
+        <span class="auth-form__error-message auth-form__error-message_usr-exists  auth-form__error-message_hide"
+              id="login-fatal">
+            Неправильный логин или пароль
+          </span>
+        <button class="button auth-form__button" name="login-button" type="submit">Войти</button>
+        <span class="auth-form__other-action">
+            или <span class="auth-form__other-action-click" id="open-signup-form">Зарегистрироваться</span>
+          </span>
+      </form>
+    </section>
+
+    <section class="service-wrapper service-wrapper_hide" id="signup-form">
+      <form class="auth-form" name="signup">
+        <div class="auth-form__close" id="close-signup-form"></div>
+        <h4 class="auth-form__title">Регистрация</h4>
+        <span class="auth-form__subtitle">E-mail</span>
+        <input class="auth-form__input" name="email" id="regemail" placeholder="Введите почту" type="email" required>
+        <span class="auth-form__error-message auth-form__error-message_hide" id="error-regemail">Введите корректный
+            адрес e-mail</span>
+        <span class="auth-form__subtitle">Пароль</span>
+        <input class="auth-form__input" name="password" id="regpassword" type="password" placeholder="Введите пароль"
+               minlength="8" required>
+        <span class="auth-form__error-message auth-form__error-message_hide" id="error-regpassword">
+            Длина пароля должна быть 8 или более символов
+          </span>
+        <span class="auth-form__subtitle">Имя</span>
+        <input class="auth-form__input" name="username" id="regname" placeholder="Введите свое имя" required
+               minlength="2" pattern="[A-Za-zА-Яа-я]{2,}">
+        <span class="auth-form__error-message auth-form__error-message_hide" id="error-regname">
+            Имя должно и содержать только буквы (2 и более)
+          </span>
+        <span class="auth-form__error-message auth-form__error-message_usr-exists auth-form__error-message_hide"
+              id="signup-fatal">
+            Такой пользователь уже есть
+          </span>
+        <button class="button auth-form__button" name="signup-button" type="submit">Зарегистрироваться</button>
+        <span class="auth-form__other-action">
+            или <span class="auth-form__other-action-click" id="open-login-form">Войти</span>
+          </span>
+      </form>
+    </section>
+
+    <section class="service-wrapper service-wrapper_hide" id="signup-ok">
+      <form class="auth-form" name="it-is-ok">
+        <div class="auth-form__close" id="close-signup-ok-form"></div>
+        <h4 class="auth-form__title">Пользователь успешно зарегистрирован!</h4>
+        <span class="auth-form__other-action auth-form__other-action_left">
+            <span class="auth-form__other-action-click" id="open-login-modal">Выполнить вход</span>
+          </span>
+      </form>
+    </section>
+    <!-- add class "overlay_on" to show overlay -->
+    <div class="overlay"></div>
+    <div class="sys-error" id="system-error">
+      <div class="sys-error__close"></div>
+      <p class="sys-error__message" id="system-error-message"></p>
     </div>
-  </section>
-  <footer class="footer">
-    <p class="footer__legal">© 2019 Kirill Kushpel</p>
-    <nav>
-      <ul class="footer__menu">
-        <li class="footer__menu-item"><a href="./">Главная</a></li>
-        <li class="footer__menu-item"><a href="./about/">О проекте</a></li>
-        <li class="footer__menu-item"><a href="https://praktikum.yandex.ru" target="_blank">Яндекс.Практикум</a></li>
-      </ul>
-    </nav>
-    <p class="footer__links">
-      <a href="https://github.com/kirillkushpel/" class="footer__social-icon" target="_blank">
-        <img src="<%= require('./images/social/git.svg')%>" alt="GitHub Logo">
-      </a>
-      <a href="https://facebook.com" class="footer__social-icon" target="_blank">
-        <img src="<%= require('./images/social/facebook.svg')%>" alt="Facebook Logo">
-      </a>
-    </p>
-  </footer>
-</div>
-<div id="modal">
-  <section class="auth auth_hide" id="login-form">
-    <form class="auth-form" name="login">
-      <div class="auth-form__close" id="close-login-form"></div>
-      <h4 class="auth-form__title">Вход</h4>
-      <span class="auth-form__subtitle">E-mail</span>
-      <input class="auth-form__input" name="email" type="email" placeholder="Введите почту" required>
-      <span class="auth-form__error-message" id="error-email-login">
-          Введите корректный email!
-        </span>
-      <span class="auth-form__subtitle">Пароль</span>
-      <input class="auth-form__input" name="password" type="password" placeholder="Введите пароль" required>
-      <span class="auth-form__error-message auth-form__error-message_hide" id="error-password-login">
-          Поле не может быть пустым!
-        </span>
-      <span class="auth-form__error-message auth-form__error-message_usr-exists" id="error-not-logged">
-          Неправильный логин или пароль
-        </span>
-      <button class="button auth-form__button" name="login-button" type="submit" disabled>Войти</button>
-      <span class="auth-form__other-action">
-          или <span class="auth-form__other-action-click" id="open-signup-form">Зарегистрироваться</span>
-        </span>
-    </form>
-  </section>
-
-  <section class="auth auth_hide" id="signup-form">
-    <form class="auth-form" name="signup">
-      <div class="auth-form__close" id="close-signup-form"></div>
-      <h4 class="auth-form__title">Регистрация</h4>
-      <span class="auth-form__subtitle">E-mail</span>
-      <input class="auth-form__input" name="email" placeholder="Введите почту" type="email" required>
-      <span class="auth-form__error-message auth-form__error-message_hide"
-            id="error-email">Введите корректный email!</span>
-      <span class="auth-form__subtitle">Пароль</span>
-      <input class="auth-form__input" name="password" type="password" placeholder="Введите пароль" minlength="8"
-             required>
-      <span class="auth-form__error-message" id="error-password">
-          Длина пароля должна быть 8 или более символов
-        </span>
-      <span class="auth-form__subtitle">Имя</span>
-      <input class="auth-form__input" name="name" placeholder="Введите свое имя" required minlength="2">
-      <span class="auth-form__error-message auth-form__error-message_hide" id="error-name">
-          Введите имя!
-        </span>
-      <span class="auth-form__error-message auth-form__error-message_usr-exists" id="error-register">
-          Такой пользователь уже есть
-        </span>
-      <button class="button auth-form__button" name="signup-button" type="submit">Зарегистрироваться</button>
-      <span class="auth-form__other-action">
-          или <span class="auth-form__other-action-click" id="open-login-form">Войти</span>
-        </span>
-    </form>
-  </section>
-
-  <section class="auth auth_hide" id="signup-ok">
-    <form class="auth-form">
-      <div class="auth-form__close" id="close-signup-ok-form"></div>
-      <h4 class="auth-form__title">Пользователь успешно зарегистрирован!</h4>
-      <span class="auth-form__other-action auth-form__other-action_left">
-          <span class="auth-form__other-action-click" id="open-login-modal">Выполнить вход</span>
-        </span>
-    </form>
-  </section>
-
-  <div class="overlay"></div>
-  <div class="sys-error" id="system-error">
-    <p class="sys-error__message" id="system-error-message"></p>
-    <p class="sys-error__message sys-error__message_sub">Нажмите чтобы закрыть</p>
   </div>
 </div>
 <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>

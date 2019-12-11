@@ -1,6 +1,6 @@
 @import url(_selected/menu__items_selected.css);
 
-.menu__items {
+.menu__items-list {
   display: flex;
   list-style-type: none;
   margin: 0;
@@ -25,14 +25,14 @@
   .menu__items-single-item {
     margin-right: 16px;
   }
-  .menu__items {
+  .menu__items-list {
     display: block;
     display: flex;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .menu__items {
+  .menu__items-list {
     position: absolute;
     top: 56px;
     left: 0px;
@@ -45,6 +45,6 @@
   }
 }
 
-.menu__items_show {
+.menu__items-list_show {
   display: block;
 }
