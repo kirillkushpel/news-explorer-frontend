@@ -9,6 +9,7 @@
   background-color: black;
   z-index: 100;
   display: none;
+  overflow-y: hidden;
 }
 
 .overlay_on {

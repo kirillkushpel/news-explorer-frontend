@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="author" content="Alexey Tsitskun">
+  <meta name="author" content="Kirill Kushpel">
   <meta name="description" content="Diploma project / Articles saver">
   <title>News Explorer</title>
   <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
@@ -19,14 +19,16 @@
       <nav class="menu">
         <a href="./" class="menu__logo">News Explorer</a>
         <div class="menu__mobile" id="mobile-menu"></div>
-        <ul class="menu__items-list">
-          <li class="menu__items-single-item menu__items-single-item_selected"><a href="./"
-                                                                                  class="menu__link menu__link_selected">Главная</a></li>
+        <ul class="menu__items">
+          <li class="menu__items-single-item menu__items-single-item_selected">
+            <a href="./"
+            class="menu__link menu__link_selected">Главная</a></li>
           <li class="menu__items-single-item"><a href="./about/" class="menu__link">О проекте</a></li>
-          <li class="menu__items-single-item" id="menu-saved-articles"><a href="./articles/"
-                                                                          class="menu__link">Сохраненные статьи</a></li>
+          <li class="menu__items-single-item" id="menu-saved-articles">
+            <a href="./articles/"
+            class="menu__link">Сохраненные статьи</a></li>
           <li class="menu__items-single-item">
-              <span class="menu__link menu__link_logged" id="user-area"><span id="shown-user-name"></span>
+              <span class="menu__link menu__link_logged" id="user-area"><span id="user-name"></span>
                 <span class="menu__logout"></span>
               </span>
           </li>
@@ -39,17 +41,15 @@
         </h3>
         <form novalidate class="header__form" name="news-finder" method="POST">
           <input class="header__form-input" type="text" name="search" placeholder="Введите тему новости" required />
-          <button class="button header__button" id="search-the-news" type="submit">Искать</button>
+          <button class="button header__button" id="search-submit" type="submit">Искать</button>
         </form>
       </div>
     </header>
     <section class=preloader>
-      <!-- Чтобы скрыть прелоадер добавьте класс preloader__message_hide -->
       <div class="preloader__message preloader__message_hide" id="preloader-searching">
         <i class="circle-preloader"></i>
         <h5 class="preloader__subtitle">Идет поиск новостей...</h5>
       </div>
-      <!-- Чтобы показать ошибку поиска уберите класс preloader__message_hide -->
       <div class="preloader__message preloader__message_hide" id="preloader-not-found">
         <img class="preloader__icon" src="<%= require('./images/not-found.svg')%>" alt="Ничего не найдено.">
         <h4 class="preloader__title">Ничего не найдено</h4>
@@ -63,11 +63,11 @@
     </section>
     <main class="results results_hide">
       <h3 class="results__title">Результаты поиска</h3>
-      <div class="results__news">
-        <template id="card-sample">
+      <div class="results__container">
+        <template id="card-proto">
           <a href="" class="card" target="_blank">
-            <div class="card__upper-body">
-              <div class="card__pic"></div>
+            <div class="card__content">
+              <div class="card__img"></div>
               <div class="card__icon"></div>
               <p class="card__warning">Войдите, чтобы сохранять статьи</p>
               <div class="card__wrapper">
@@ -87,23 +87,20 @@
       <div>
         <h3 class="about__title">Об авторе</h3>
         <p class="about__text">
-          Здравствуйте, меня зовут Алексей. Я прошёл курсы веб-разработчика в Яндекс.Практикум, где изучил HTML, CSS,
+          Привет, меня зовут Кирилл. Я прошёл курсы веб-разработчика в Яндекс.Практикум, где изучил HTML, CSS,
           JavaScript, Node.js и основы работы с MongoDB.
         </p>
         <p class="about__text">
-          За время обучения я выполнял проектные работы по адаптивной верстке, асинхронным запросам к серверу,
-          построению REST API, регистрации и авторизации пользователей на сайте. И, поверьте, я выполнял эти работы
-          хорошо, потому что обожаю работать с кодом.
+          За время обучения я выполнил несколько проектов по адаптивной верстке, работе с пользователями, асинхронным запросам к серверу,
+          построению RESTful API, написанию серверного кода и многому другому.
         </p>
         <p class="about__text">
-          Сейчас я помогаю в качестве старшего студента младшему потоку Яндекс.Практикума, что дает бесценный
-          менторский
-          опыт.
+          В настоящее время работаю фронтенд-разработчиком в BORK.
         </p>
       </div>
     </section>
     <footer class="footer">
-      <p class="footer__legal">© 2019 derYpsilon</p>
+      <p class="footer__legal">© 2019 kirillkushpel</p>
       <nav>
         <ul class="footer__menu">
           <li class="footer__menu-item"><a href="./">Главная</a></li>
@@ -113,7 +110,7 @@
         </ul>
       </nav>
       <p class="footer__links">
-        <a href="https://github.com/derYpsilon/" class="footer__social-icon" target="_blank">
+        <a href="https://github.com/kirillkushpel/" class="footer__social-icon" target="_blank">
           <img src="<%= require('./images/social/git.svg')%>" alt="GitHub Logo">
         </a>
         <a href="https://facebook.com" class="footer__social-icon" target="_blank">
@@ -123,7 +120,7 @@
     </footer>
   </div>
   <!-- Сервисная часть с оверлеем и формами -->
-  <div id="service-area">
+  <div id="modals">
     <section class="service-wrapper service-wrapper_hide" id="login-form">
       <form class="auth-form" name="login">
         <div class="auth-form__close" id="close-login-form"></div>
@@ -155,19 +152,19 @@
         <div class="auth-form__close" id="close-signup-form"></div>
         <h4 class="auth-form__title">Регистрация</h4>
         <span class="auth-form__subtitle">E-mail</span>
-        <input class="auth-form__input" name="email" id="regemail" placeholder="Введите почту" type="email" required>
-        <span class="auth-form__error-message auth-form__error-message_hide" id="error-regemail">Введите корректный
+        <input class="auth-form__input" name="email" id="usermail" placeholder="Введите почту" type="email" required>
+        <span class="auth-form__error-message auth-form__error-message_hide" id="error-usermail">Введите корректный
             адрес e-mail</span>
         <span class="auth-form__subtitle">Пароль</span>
-        <input class="auth-form__input" name="password" id="regpassword" type="password" placeholder="Введите пароль"
+        <input class="auth-form__input" name="password" id="userpassword" type="password" placeholder="Введите пароль"
                minlength="8" required>
-        <span class="auth-form__error-message auth-form__error-message_hide" id="error-regpassword">
+        <span class="auth-form__error-message auth-form__error-message_hide" id="error-userpassword">
             Длина пароля должна быть 8 или более символов
           </span>
         <span class="auth-form__subtitle">Имя</span>
-        <input class="auth-form__input" name="username" id="regname" placeholder="Введите свое имя" required
+        <input class="auth-form__input" name="username" id="username" placeholder="Введите свое имя" required
                minlength="2" pattern="[A-Za-zА-Яа-я]{2,}">
-        <span class="auth-form__error-message auth-form__error-message_hide" id="error-regname">
+        <span class="auth-form__error-message auth-form__error-message_hide" id="error-username">
             Имя должно и содержать только буквы (2 и более)
           </span>
         <span class="auth-form__error-message auth-form__error-message_usr-exists auth-form__error-message_hide"
@@ -181,20 +178,19 @@
       </form>
     </section>
 
-    <section class="service-wrapper service-wrapper_hide" id="signup-ok">
-      <form class="auth-form" name="it-is-ok">
-        <div class="auth-form__close" id="close-signup-ok-form"></div>
+    <section class="service-wrapper service-wrapper_hide" id="signup-success">
+      <form class="auth-form" name="success">
+        <div class="auth-form__close" id="close-signup-success-form"></div>
         <h4 class="auth-form__title">Пользователь успешно зарегистрирован!</h4>
         <span class="auth-form__other-action auth-form__other-action_left">
             <span class="auth-form__other-action-click" id="open-login-modal">Выполнить вход</span>
           </span>
       </form>
     </section>
-    <!-- add class "overlay_on" to show overlay -->
     <div class="overlay"></div>
-    <div class="sys-error" id="system-error">
-      <div class="sys-error__close"></div>
-      <p class="sys-error__message" id="system-error-message"></p>
+    <div class="error" id="server-fail">
+      <div class="error__hide"></div>
+      <p class="error__message" id="server-fail-message"></p>
     </div>
   </div>
 </div>

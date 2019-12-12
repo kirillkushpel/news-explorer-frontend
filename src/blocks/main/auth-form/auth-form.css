@@ -2,7 +2,7 @@
 @import url(./__error-message/auth-form__error-message.css);
 @import url(./__input/auth-form__input.css);
 @import url(./__link/auth-form__link.css);
-@import url(./__auth/auth.css);
+@import url(../service-wrapper/service-wrapper.css);
 @import url(./__title/auth-form__title.css);
 @import url(./__close/auth-form__close.css);
 @import url(./__subtitle/auth-form__subtitle.css);

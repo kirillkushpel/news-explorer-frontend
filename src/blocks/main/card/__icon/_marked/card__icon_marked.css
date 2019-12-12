@@ -5,3 +5,7 @@
 .card__icon.card__icon_marked:hover ~ .card__warning {
   opacity: 0;
 }
+
+.card__icon.card__icon_marked:hover {
+  background-image: url(../../../../../images/bookmark/marked.svg);
+}

@@ -1,17 +1,17 @@
-.scroll-lock {
+.body-noscroll {
   overflow: hidden;
 }
 
-.scroll-lock .overlay {
+.body-noscroll .overlay {
   display: flex;
 }
 
 @media screen and (max-width: 767px) {
-  .scroll-lock .menu__mobile {
+  .body-noscroll .menu__mobile {
     display: none;
   }
 
-  .scroll-lock .overlay {
+  .body-noscroll .overlay {
     display: none;
   }
 }

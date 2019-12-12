@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="author" content="Alexey Tsitskun">
+  <meta name="author" content="Kirill Kushpel">
   <meta name="description" content="Diploma project / Articles saver">
   <title>News Explorer / О проекте</title>
   <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.about.css %>">
@@ -13,204 +13,199 @@
 </head>
 
 <body>
-  <div id="scroll" class="scroll-lock">
-    <div class="root">
-      <header class="header header_white">
-        <nav class="menu menu_black">
-          <a href="../" class="menu__logo menu__logo_black">News Explorer</a>
-          <div class="menu__mobile menu__mobile_black" id="mobile-menu"></div>
-          <ul class="menu__items-list">
-            <li class="menu__items-single-item">
-              <a href="../" class="menu__link menu__link_black">Главная</a>
-            </li>
-            <li class="menu__items-single-item menu__items-single-item_selected-black">
-              <a href="./" class="menu__link menu__link_selected-black">О проекте</a>
-            </li>
-            <li class="menu__items-single-item" id="menu-saved-articles"><a href="../articles/"
-                class="menu__link menu__link_black">
-                Сохраненные статьи</a></li>
-            <li class="menu__items-single-item">
+<div id="scroll" class="scroll-lock">
+  <div class="root">
+    <header class="header header_white">
+      <nav class="menu menu_black">
+        <a href="../" class="menu__logo menu__logo_black">News Explorer</a>
+        <div class="menu__mobile menu__mobile_black" id="mobile-menu"></div>
+        <ul class="menu__items">
+          <li class="menu__items-single-item">
+            <a href="../" class="menu__link menu__link_black">Главная</a>
+          </li>
+          <li class="menu__items-single-item menu__items-single-item_selected-black">
+            <a href="./" class="menu__link menu__link_selected-black">О проекте</a>
+          </li>
+          <li class="menu__items-single-item" id="menu-saved-articles"><a href="../articles/"
+                                                                          class="menu__link menu__link_black">
+            Сохраненные статьи</a></li>
+          <li class="menu__items-single-item">
               <span class="menu__link menu__link_logged  menu__link_logged-black" id="user-area">
-                <span id="shown-user-name"></span>
+                <span id="user-name"></span>
                 <span class="menu__logout menu__logout_black"></span>
               </span>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <main class="client">
-        <h1 class="customers__title">Клиентам</h1>
-        <p class="customers__text">Этот сайт — дипломный проект студента Яндекс.Практикума. Его цель — показать, чему
-          научился студент, какими технологиями владеет. Вёрстка сайта выполнена по методологии БЭМ. </p>
-        <p class="customers__text">Это делает сайт гибким и масштабируемым. Кроме того, добавлять новые страницы и
-          функциональность проще и быстрее, чем в проектах, выполненных по другим методологиям. Также сайт проще и
-          дешевле
-          поддерживать.</p>
-        <p class="customers__text">Студент самостоятельно написал серверный код. В нём реализована функциональность
-          регистрации и входа в систему. Сайт позволяет искать новости за прошедшую неделю и сохранять понравившиеся в
-          личном кабинете. На сервере избранные новости хранятся в базе данных Mongo DB. Студент запрограммировал
-          надёжный
-          сервер: отказоустойчивый и безопасный.</p>
-        <p class="customers__text">При создании проекта была использована сборка технологией Webpack. Это современный
-          подход к разработке сайтов. Код оптимизируется, а значит, сайт работает быстрее. Также сайт работает в старых
-          браузерах. Даже если посетители — пользователи старых операционных систем, у них не будет проблем с
-          отображением. А значит, потенциальная аудитория возрастает.</p>
-        <p class="customers__text">Проект был проверен экспертами Яндекс.Практикума. Если вашему бизнесу нужен сайт, мы
-          рекомендуем обратиться к этому студенту.</p>
-      </main>
-      <section class="skills">
-        <div class="tech__wrap">
-          <h2 class="tech__title">Используемые технологии</h2>
-          <div class="tech__logos">
-            <img src="../<%= require('../../images/skills/html.svg')%>" alt="HTML5">
-            <img src="../<%= require('../../images/skills/css.svg')%>" alt="CSS3">
-            <img src="../<%= require('../../images/skills/js.svg')%>" alt="JavaScript">
-            <img src="../<%= require('../../images/skills/webpack.svg')%>" alt="Webpack">
-          </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="customers">
+      <h1 class="customers__title">Клиентам</h1>
+      <p class="customers__text">Этот сайт — дипломный проект студента Яндекс.Практикума. Его цель — показать, чему
+        научился студент, какими технологиями владеет. Вёрстка сайта выполнена по методологии БЭМ. </p>
+      <p class="customers__text">Это делает сайт гибким и масштабируемым. Кроме того, добавлять новые страницы и
+        функциональность проще и быстрее, чем в проектах, выполненных по другим методологиям. Также сайт проще и
+        дешевле
+        поддерживать.</p>
+      <p class="customers__text">Студент самостоятельно написал серверный код. В нём реализована функциональность
+        регистрации и входа в систему. Сайт позволяет искать новости за прошедшую неделю и сохранять понравившиеся в
+        личном кабинете. На сервере избранные новости хранятся в базе данных Mongo DB. Студент запрограммировал
+        надёжный
+        сервер: отказоустойчивый и безопасный.</p>
+      <p class="customers__text">При создании проекта была использована сборка технологией Webpack. Это современный
+        подход к разработке сайтов. Код оптимизируется, а значит, сайт работает быстрее. Также сайт работает в старых
+        браузерах. Даже если посетители — пользователи старых операционных систем, у них не будет проблем с
+        отображением. А значит, потенциальная аудитория возрастает.</p>
+      <p class="customers__text">Проект был проверен экспертами Яндекс.Практикума. Если вашему бизнесу нужен сайт, мы
+        рекомендуем обратиться к этому студенту.</p>
+    </main>
+    <section class="skills">
+      <div class="skills__wrap">
+        <h2 class="skills__title">Используемые технологии</h2>
+        <div class="skills__logos">
+          <img src="../<%= require('../../images/skills/html.svg')%>" alt="HTML5">
+          <img src="../<%= require('../../images/skills/css.svg')%>" alt="CSS3">
+          <img src="../<%= require('../../images/skills/js.svg')%>" alt="JavaScript">
+          <img src="../<%= require('../../images/skills/webpack.svg')%>" alt="Webpack">
         </div>
-      </section>
-      <section class="about">
-        <img class="about__photo" src="../<%= require('../../images/selfie.jpg')%>" alt="Фото автора">
-        <div>
-          <h3 class="about__title">Об авторе</h3>
-          <p class="about__text">
-            Здравствуйте, меня зовут Алексей. Я прошёл курсы веб-разработчика в Яндекс.Практикум, где изучил HTML, CSS,
-            JavaScript, Node.js и основы работы с MongoDB.
-          </p>
-          <p class="about__text">
-            За время обучения я выполнял проектные работы по адаптивной верстке, асинхронным запросам к серверу,
-            построению REST API, регистрации и авторизации пользователей на сайте. И, поверьте, я выполнял эти работы
-            хорошо, потому что обожаю работать с кодом.
-          </p>
-          <p class="about__text">
-            Сейчас я помогаю в качестве старшего студента младшему потоку Яндекс.Практикума, что дает бесценный
-            менторский
-            опыт.
-          </p>
-        </div>
-      </section>
-      <section class="slider">
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-container">
-          <div class="swiper-wrapper">
-            <template id="commit-sample">
-              <div class="swiper-slide">
-                <div class="slider__commit-card">
-                  <p class="slider__commit-date"></p>
-                  <div class="slider__commit-person">
-                    <img class="slider__commit-image" src="" alt="Фото из GitHub">
-                    <div>
-                      <h4 class="slider__commit-name"></h4>
-                      <p class="slider__commit-email"></p>
-                    </div>
-                  </div>
-                  <p class="slider__commit-text"></p>
-                </div>
-              </div>
-            </template>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-        <div class="swiper-button-next next"></div>
-        <a class="button slider__git-button" href="https://github.com/derYpsilon/" target="_blank">Открыть в GitHub</a>
-      </section>
-      <footer class="footer">
-        <p class="footer__legal">© 2019 derYpsilon</p>
-        <nav>
-          <ul class="footer__menu">
-            <li class="footer__menu-item"><a href="../">Главная</a></li>
-            <li class="footer__menu-item"><a href="./">О проекте</a></li>
-            <li class="footer__menu-item"><a href="https://praktikum.yandex.ru" target="_blank">Яндекс.Практикум</a>
-            </li>
-          </ul>
-        </nav>
-        <p class="footer__links">
-          <a href="https://github.com/derYpsilon/" class="footer__social-icon" target="_blank">
-            <img src="../<%= require('../../images/social/git.svg')%>" alt="GitHub Logo">
-          </a>
-          <a href="https://facebook.com" class="footer__social-icon" target="_blank">
-            <img src="../<%= require('../../images/social/facebook.svg')%>" alt="Facebook Logo">
-          </a>
+      </div>
+    </section>
+    <section class="about">
+      <img class="about__photo" src="../<%= require('../../images/selfie.jpg')%>" alt="Фото автора">
+      <div>
+        <h3 class="about__title">Об авторе</h3>
+        <p class="about__text">
+          Привет, меня зовут Кирилл! Я прошёл курсы веб-разработчика в Яндекс.Практикум, где изучил HTML, CSS,
+          JavaScript, Node.js и основы работы с MongoDB.
         </p>
-      </footer>
-    </div>
-    <!-- Сервисная часть с оверлеем и формами -->
-    <div id="service-area">
-      <section class="service-wrapper service-wrapper_hide" id="login-form">
-        <form class="auth-form" name="login">
-          <div class="auth-form__close" id="close-login-form"></div>
-          <h4 class="auth-form__title">Вход</h4>
-          <span class="auth-form__subtitle">E-mail</span>
-          <input class="auth-form__input" name="email" id="email" type="email" placeholder="Введите почту" required>
-          <span class="auth-form__error-message  auth-form__error-message_hide" id="error-email">
+        <p class="about__text">
+          За время обучения я выполнил несколько проектов по адаптивной верстке, работе с пользователями, асинхронным запросам к серверу,
+          построению RESTful API, написанию серверного кода и многому другому.
+        </p>
+        <p class="about__text">
+          В настоящее время работаю фронтенд-разработчиком в BORK.
+        </p>
+      </div>
+    </section>
+    <section class="slider">
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <template id="commit-sample">
+            <div class="swiper-slide">
+              <div class="slider__commit-card">
+                <p class="slider__commit-date"></p>
+                <div class="slider__commit-person">
+                  <img class="slider__commit-image" src="" alt="Фото из GitHub">
+                  <div>
+                    <h4 class="slider__commit-name"></h4>
+                    <p class="slider__commit-email"></p>
+                  </div>
+                </div>
+                <p class="slider__commit-text"></p>
+              </div>
+            </div>
+          </template>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+      <div class="swiper-button-next next"></div>
+      <a class="button slider__git-button" href="https://github.com/kirillkushpel/" target="_blank">Открыть в GitHub</a>
+    </section>
+    <footer class="footer">
+      <p class="footer__legal">© 2019 kirillkushpel</p>
+      <nav>
+        <ul class="footer__menu">
+          <li class="footer__menu-item"><a href="../">Главная</a></li>
+          <li class="footer__menu-item"><a href="./">О проекте</a></li>
+          <li class="footer__menu-item"><a href="https://praktikum.yandex.ru" target="_blank">Яндекс.Практикум</a>
+          </li>
+        </ul>
+      </nav>
+      <p class="footer__links">
+        <a href="https://github.com/kirillkushpel/" class="footer__social-icon" target="_blank">
+          <img src="../<%= require('../../images/social/git.svg')%>" alt="GitHub Logo">
+        </a>
+        <a href="https://facebook.com" class="footer__social-icon" target="_blank">
+          <img src="../<%= require('../../images/social/facebook.svg')%>" alt="Facebook Logo">
+        </a>
+      </p>
+    </footer>
+  </div>
+  <div id="modals">
+    <section class="service-wrapper service-wrapper_hide" id="login-form">
+      <form class="auth-form" name="login">
+        <div class="auth-form__close" id="close-login-form"></div>
+        <h4 class="auth-form__title">Вход</h4>
+        <span class="auth-form__subtitle">E-mail</span>
+        <input class="auth-form__input" name="email" id="email" type="email" placeholder="Введите почту" required>
+        <span class="auth-form__error-message  auth-form__error-message_hide" id="error-email">
             Введите корректный адрес e-mail
           </span>
-          <span class="auth-form__subtitle">Пароль</span>
-          <input class="auth-form__input" name="password" id="password" type="password" placeholder="Введите пароль"
-            required>
-          <span class="auth-form__error-message auth-form__error-message_hide" id="error-password">
+        <span class="auth-form__subtitle">Пароль</span>
+        <input class="auth-form__input" name="password" id="password" type="password" placeholder="Введите пароль"
+               required>
+        <span class="auth-form__error-message auth-form__error-message_hide" id="error-password">
             Поле не может быть пустым!
           </span>
-          <span class="auth-form__error-message auth-form__error-message_usr-exists  auth-form__error-message_hide"
-            id="login-fatal">
+        <span class="auth-form__error-message auth-form__error-message_usr-exists  auth-form__error-message_hide"
+              id="login-fatal">
             Неправильный логин или пароль
           </span>
-          <button class="button auth-form__button" name="login-button" type="submit">Войти</button>
-          <span class="auth-form__other-action">
+        <button class="button auth-form__button" name="login-button" type="submit">Войти</button>
+        <span class="auth-form__other-action">
             или <span class="auth-form__other-action-click" id="open-signup-form">Зарегистрироваться</span>
           </span>
-        </form>
-      </section>
+      </form>
+    </section>
 
-      <section class="service-wrapper service-wrapper_hide" id="signup-form">
-        <form class="auth-form" name="signup">
-          <div class="auth-form__close" id="close-signup-form"></div>
-          <h4 class="auth-form__title">Регистрация</h4>
-          <span class="auth-form__subtitle">E-mail</span>
-          <input class="auth-form__input" name="email" id="regemail" placeholder="Введите почту" type="email" required>
-          <span class="auth-form__error-message auth-form__error-message_hide" id="error-regemail">Введите корректный
+    <section class="service-wrapper service-wrapper_hide" id="signup-form">
+      <form class="auth-form" name="signup">
+        <div class="auth-form__close" id="close-signup-form"></div>
+        <h4 class="auth-form__title">Регистрация</h4>
+        <span class="auth-form__subtitle">E-mail</span>
+        <input class="auth-form__input" name="email" id="usermail" placeholder="Введите почту" type="email" required>
+        <span class="auth-form__error-message auth-form__error-message_hide" id="error-usermail">Введите корректный
             адрес e-mail</span>
-          <span class="auth-form__subtitle">Пароль</span>
-          <input class="auth-form__input" name="password" id="regpassword" type="password" placeholder="Введите пароль"
-            minlength="8" required>
-          <span class="auth-form__error-message auth-form__error-message_hide" id="error-regpassword">
+        <span class="auth-form__subtitle">Пароль</span>
+        <input class="auth-form__input" name="password" id="userpassword" type="password" placeholder="Введите пароль"
+               minlength="8" required>
+        <span class="auth-form__error-message auth-form__error-message_hide" id="error-userpassword">
             Длина пароля должна быть 8 или более символов
           </span>
-          <span class="auth-form__subtitle">Имя</span>
-          <input class="auth-form__input" name="username" id="regname" placeholder="Введите свое имя" required
-            minlength="2" pattern="[A-Za-zА-Яа-я]{2,}">
-          <span class="auth-form__error-message auth-form__error-message_hide" id="error-regname">
+        <span class="auth-form__subtitle">Имя</span>
+        <input class="auth-form__input" name="username" id="username" placeholder="Введите свое имя" required
+               minlength="2" pattern="[A-Za-zА-Яа-я]{2,}">
+        <span class="auth-form__error-message auth-form__error-message_hide" id="error-username">
             Имя должно и содержать только буквы (2 и более)
           </span>
-          <span class="auth-form__error-message auth-form__error-message_usr-exists auth-form__error-message_hide"
-            id="signup-fatal">
+        <span class="auth-form__error-message auth-form__error-message_usr-exists auth-form__error-message_hide"
+              id="signup-fatal">
             Такой пользователь уже есть
           </span>
-          <button class="button auth-form__button" name="signup-button" type="submit">Зарегистрироваться</button>
-          <span class="auth-form__other-action">
+        <button class="button auth-form__button" name="signup-button" type="submit">Зарегистрироваться</button>
+        <span class="auth-form__other-action">
             или <span class="auth-form__other-action-click" id="open-login-form">Войти</span>
           </span>
-        </form>
-      </section>
+      </form>
+    </section>
 
-      <section class="service-wrapper service-wrapper_hide" id="signup-ok">
-        <form class="auth-form" name="it-is-ok">
-          <div class="auth-form__close" id="close-signup-ok-form"></div>
-          <h4 class="auth-form__title">Пользователь успешно зарегистрирован!</h4>
-          <span class="auth-form__other-action auth-form__other-action_left">
+    <section class="service-wrapper service-wrapper_hide" id="signup-success">
+      <form class="auth-form" name="success">
+        <div class="auth-form__close" id="close-signup-success-form"></div>
+        <h4 class="auth-form__title">Пользователь успешно зарегистрирован!</h4>
+        <span class="auth-form__other-action auth-form__other-action_left">
             <span class="auth-form__other-action-click" id="open-login-modal">Выполнить вход</span>
           </span>
-        </form>
-      </section>
-      <!-- add class "overlay_on" to show overlay -->
-      <div class="overlay"></div>
-      <div class="sys-error" id="system-error">
-        <div class="sys-error__close"></div>
-        <p class="sys-error__message" id="system-error-message"></p>
-      </div>
+      </form>
+    </section>
+    <div class="overlay"></div>
+    <div class="error" id="server-fail">
+      <div class="error__hide"></div>
+      <p class="error__message" id="server-fail-message"></p>
     </div>
   </div>
-  <script src="<%= htmlWebpackPlugin.files.chunks.about.entry %>"></script>
+</div>
+<script src="<%= htmlWebpackPlugin.files.chunks.about.entry %>"></script>
 </body>
 
 </html>

@@ -1,25 +1,25 @@
-.sys-error {
+.error {
   display: none;
-  max-width: 300px;
+  position: relative;
+  max-width: 230px;
+  min-width: 230px;
 }
-.sys-error_on {
-  z-index: 300;
+.error__show {
+  z-index: 999;
   position: fixed;
   display: block;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rebeccapurple;
+  background: red;
   padding: 20px;
-  border-radius: 16px;
   color: white;
   cursor: pointer;
   font-size: 0.87rem;
   text-align: center;
-  border: 2px solid grey;
 }
 
-.sys-error__message {
+.error__message {
   box-sizing: border-box;
   font-family: sans-serif;
   margin: 0;
@@ -29,8 +29,22 @@
   text-align: center;
   font-weight: bold;
 }
-.sys-error__message_sub {
+.error__message_sub {
   margin-top: 10px;
   font-size: 0.75rem;
   font-weight: normal;
+}
+
+.error__hide{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: -15px;
+  right: -15px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url(../../../images/close_white.svg);
+  cursor: pointer;
+  background-color: red;
 }

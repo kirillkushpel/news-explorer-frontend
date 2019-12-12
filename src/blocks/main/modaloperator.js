@@ -1,30 +1,31 @@
-import './scroll-lock/scroll-lock.css'
+import './scroll-lock.css'
 
-export default class ModalOperator {
-  constructor(kbdElement, clickElement) {
-    this.kbdElement = kbdElement
-    this.clickElement = clickElement
-    this.modals = Array.from(this.kbdElement.querySelectorAll('.service-wrapper'))
-    this.kbdElement.addEventListener('keydown', (event) => this.onKey(event))
-    this.clickElement.addEventListener('click', (event) => this.onClick(event))
+export default class ModalsHandler {
+  constructor(keyboard, mouse) {
+    this.keyboard = keyboard
+    this.mouse = mouse
+    this.modals = Array.from(this.keyboard.querySelectorAll('.service-wrapper'))
+    this.keyboard.addEventListener('keydown', (event) => this.keyDown(event))
+    this.mouse.addEventListener('click', (event) => this.click(event))
   }
 
-  onKey(event) {
-    if (Array.from(this.clickElement.classList).includes('scroll-lock')) {
+  keyDown(event) {
+    if (Array.from(this.mouse.classList).includes('body-noscroll')) {
       if (event.code === 'Escape') {
         this.modals.find(
           // eslint-disable-next-line no-confusing-arrow
-          (element) => Array.from(element.classList).includes('auth-form__wrapper_hide') ? false : true,
+          (element) => !Array.from(element.classList)
+            .includes('service-wrapper_hide'),
         ).classList.add('service-wrapper_hide')
-        this.clickElement.classList.remove('scroll-lock')
+        this.mouse.classList.remove('body-noscroll')
       }
     }
   }
 
-  onClick(event) {
+  click(event) {
     if (Array.from(event.target.classList).includes('service-wrapper')) {
       event.target.classList.add('service-wrapper_hide')
-      this.clickElement.classList.remove('scroll-lock')
+      this.mouse.classList.remove('body-noscroll')
     }
   }
 }

@@ -1,16 +1,16 @@
 import './overlay.css'
-// import MainHandler from '../MainHandler'
+// import Component from '../component'
 
 export default class Overlay {
   constructor() {
-    this.element = document.querySelector('.overlay')
+    this.domElement = document.querySelector('.overlay')
   }
 
   show() {
-    this.element.classList.add('overlay_on')
+    this.domElement.classList.add('overlay_on')
   }
 
   hide() {
-    this.element.classList.remove('overlay_on')
+    this.domElement.classList.remove('overlay_on')
   }
 }

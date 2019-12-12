@@ -3,47 +3,47 @@ import '../../vendor/normalize.css'
 import '../../../node_modules/swiper/css/swiper.min.css'
 import './index.css'
 import Swiper from 'swiper'
-import config from '../../modules/config'
+import params from '../../modules/params'
 import { menuOperator, mainMenu } from '../../blocks/menu/menu'
-import ModalOperator from '../../blocks/main/modaloperator'
+import ModalsHandler from '../../blocks/main/modaloperator'
 import AuthForm from '../../blocks/main/auth-form/auth-form'
 import ShowError from '../../blocks/main/error/error'
-import ApiBackend from '../../modules/api-backend'
-import MainMenuRender from '../../modules/main-menu-render'
-import CommitsLoader from '../../modules/commits-loader'
-import CommitsRender from '../../modules/commits-render'
+import Backend from '../../modules/backend'
+import MenuRender from '../../modules/menu-render'
+import GitCommitsLoader from '../../modules/git-commits-loader'
+import GitCommitsRender from '../../modules/git-commits-render'
 
-const modalOperator = new ModalOperator(document.body, document.querySelector('#scroll'))
+const modalOperator = new ModalsHandler(document.body, document.querySelector('#scroll'))
 const showError = new ShowError()
-const apiBackend = new ApiBackend(config)
+const backend = new Backend(params)
 
 const loginForm = new AuthForm(
   document.querySelector('#login-form'),
   '#signup-form',
-  apiBackend.login.bind(apiBackend),
-  apiBackend.getUserName.bind(apiBackend),
+  backend.login.bind(backend),
+  backend.getUserName.bind(backend),
   showError,
 )
 
 const signupForm = new AuthForm(
   document.querySelector('#signup-form'),
   '#login-form',
-  apiBackend.signUp.bind(apiBackend),
-  apiBackend.getUserName.bind(apiBackend),
+  backend.signUp.bind(backend),
+  backend.getUserName.bind(backend),
   showError,
 )
 
-const regCompleteForm = new AuthForm(
-  document.querySelector('#signup-ok'),
+const regComplete = new AuthForm(
+  document.querySelector('#signup-success'),
   '#login-form',
   null,
   null,
   showError,
 )
 
-const userMenu = new MainMenuRender(
+const userMenu = new MenuRender(
   loginForm.open.bind(loginForm),
-  apiBackend.logout.bind(apiBackend),
+  backend.logout.bind(backend),
   showError,
 )
 userMenu.init()
@@ -81,11 +81,11 @@ const swiper = new Swiper('.swiper-container', {
   },
 })
 
-const commitsLoader = new CommitsLoader(config.git, config.maxGitCommits)
-const commitsRender = new CommitsRender(
+const commitsLoader = new GitCommitsLoader(params.git, params.maxGitCommits)
+const commitsRender = new GitCommitsRender(
   swiper.update.bind(swiper),
   commitsLoader.getCommits.bind(commitsLoader),
-  config,
+  params,
 )
 
 commitsRender.init()

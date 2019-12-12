@@ -3,34 +3,33 @@
 import './auth-form.css'
 
 export default class AuthForm {
-  constructor(domElement, goTo) {
+  constructor(domElement, goTo, handler, getUser, showError) {
     this.domElement = domElement
     this.closeButton = domElement.querySelector('.auth-form__close')
     this.closeButton.addEventListener('click', () => { this.close() })
     this.form = domElement.querySelector('.auth-form')
+    this._pathMarker = goTo
     this.goTo = document.querySelector(goTo)
     this.nextStep = domElement.querySelector('.auth-form__other-action-click')
     this.nextStep.addEventListener('click', () => { this.openNext() })
-    this._callExt = () => { console.log('Add the callback via class setter') }
+    this.serverHandler = handler
+    this.getUser = getUser
+    this.showError = showError
     this.submitButton = ''
+    this._inputs = []
     Array.from(this.form.elements)
       .forEach((item) => {
         if (item.nodeName == 'BUTTON') {
           this.submitButton = item
         }
         if (item.nodeName == 'INPUT') {
+          this._inputs.push(item)
           item.addEventListener('input', () => this.inputHandler())
         }
       })
+    this._updateView = new Event('updateView', { bubbles: true })
+    this._updateMenu = new Event('updateMenu', { bubbles: true })
     this.form.addEventListener('submit', (event) => this.submitForm(event))
-  }
-
-  get callExt() {
-    return this._callExt
-  }
-
-  set callExt(func) {
-    this._callExt = func
   }
 
   disableSubmitButton() {
@@ -41,13 +40,19 @@ export default class AuthForm {
     this.submitButton.removeAttribute('disabled', true)
   }
 
+  disableInputs() {
+    this._inputs.forEach((item) => item.setAttribute('disabled', true))
+  }
+
+  enableInputs() {
+    this._inputs.forEach((item) => item.removeAttribute('disabled', true))
+  }
+
   inputHandler() {
     this.form.querySelector(`#${this.form.name}-fatal`).classList.add('auth-form__error-message_hide')
     let validator = true
-    Array.from(this.form.elements).forEach((item) => {
-      if (item.nodeName == 'INPUT') {
-        if (!this.isValid(item)) { validator = false }
-      }
+    this._inputs.forEach((item) => {
+      if (!this.isValid(item)) { validator = false }
     })
     if (validator) {
       this.enableSubmitButton()
@@ -70,30 +75,56 @@ export default class AuthForm {
     const userToSend = {}
     event.preventDefault()
     this.disableSubmitButton()
-    Array.from(this.form.elements).forEach((item) => {
-      if (item.nodeName == 'INPUT') {
-        userToSend[item.name === 'username' ? 'name' : item.name] = item.value
-      }
+    this.disableInputs()
+    this._inputs.forEach((item) => {
+      userToSend[item.name === 'username' ? 'name' : item.name] = item.value
     })
-    this.callExt(userToSend)
-      .catch(() => {
-        this.form.querySelector(`#${this.form.name}-fatal`).classList.remove('auth-form__error-message_hide')
+    this.serverHandler(userToSend)
+      .then(() => {
+        if (this._pathMarker === '#signup-form') {
+          this.close()
+          this.enableSubmitButton()
+          this.enableInputs()
+          this.getUser()
+            .then((res) => {
+              // eslint-disable-next-line no-unused-expressions
+              localStorage && localStorage.setItem('user', res)
+              document.dispatchEvent(this._updateView)
+              document.dispatchEvent(this._updateMenu)
+            })
+            .catch((err) => this.showError.show(err.message))
+        }
+        if (this._pathMarker === '#login-form') {
+          this.goTo = document.querySelector('#signup-success')
+          this.openNext()
+          this.goTo = document.querySelector(this._pathMarker)
+          this.enableSubmitButton()
+          this.enableInputs()
+        }
+      })
+      .catch((err) => {
+        if (err.message === '400' || err.message === '401') {
+          this.form.querySelector(`#${this.form.name}-fatal`).classList.remove('auth-form__error-message_hide')
+        } else {
+          this.showError.show(err.message)
+        }
         this.enableSubmitButton()
+        this.enableInputs()
       })
   }
 
   open() {
-    this.domElement.classList.remove('auth-form__wrapper_hide')
-    document.body.classList.add('scroll-lock')
+    this.domElement.classList.remove('service-wrapper_hide')
+    document.querySelector('#scroll').classList.add('body-noscroll')
   }
 
   close() {
-    document.body.classList.remove('scroll-lock')
-    this.domElement.classList.add('auth-form__wrapper_hide')
+    document.querySelector('#scroll').classList.remove('body-noscroll')
+    this.domElement.classList.add('service-wrapper_hide')
   }
 
   openNext() {
-    this.domElement.classList.add('auth-form__wrapper_hide')
-    this.goTo.classList.remove('auth-form__wrapper_hide')
+    this.domElement.classList.add('service-wrapper_hide')
+    this.goTo.classList.remove('service-wrapper_hide')
   }
 }

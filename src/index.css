@@ -8,5 +8,4 @@
 @import url(blocks/main/about/about.css);
 @import url(blocks/main/footer/footer.css);
 @import url(blocks/main/card/card.css);
-@import url(blocks/main/scroll-lock/scroll-lock.css);
-@import url(blocks/main/service-wrapper/service-wrapper.css);
+@import url(blocks/main/body-noscroll/body-noscroll.css);
