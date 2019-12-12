@@ -128,11 +128,11 @@ export default class NewsRender {
   }
 
   _renderCards() {
+    const diff = this._news.length - this._position
     const searchResult = document.createDocumentFragment()
-    const delta = this._news.length - this._position
-    const total = (delta) < this.cardsArray.showStep ? delta : this.cardsArray.showStep
+    const total = (diff) < this.cardsArray.showStep ? diff : this.cardsArray.showStep
     // eslint-disable-next-line max-len
-    if (delta <= this.cardsArray.showStep) this._showMore.classList.add(this.cardsArray.showMore.hide)
+    if (diff <= this.cardsArray.showStep) this._showMore.classList.add(this.cardsArray.showMore.hide)
     for (let i = 0; i < total; i += 1) {
       searchResult.appendChild(this.createCard(this._news[this._position]))
       this._position += 1

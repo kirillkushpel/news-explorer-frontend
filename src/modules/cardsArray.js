@@ -3,17 +3,17 @@ export default class Cards {
   constructor(getAllArticles, deleteArticle, {
     cardPrototype, cardsArray, card, month,
   }, showError) {
-    this._cardsArrayContainer = document.querySelector(this.cardsArray.cardsArrayContainer)
-    this._articlesCount = document.querySelector(this.cardsArray.articlesCount)
     this.showError = showError
     this.card = card
     this.getAllArticles = getAllArticles
-    this._articlesHeader = document.querySelector(this.cardsArray.articlesHeader)
     this._stats = {}
     this.cardsArray = cardsArray
     this.month = month
     this.deleteArticle = deleteArticle
     this.cardPrototype = document.querySelector(cardPrototype).content
+    this._articlesHeader = document.querySelector(this.cardsArray.articlesHeader)
+    this._cardsArrayContainer = document.querySelector(this.cardsArray.cardsArrayContainer)
+    this._articlesCount = document.querySelector(this.cardsArray.articlesCount)
     this._cardsArrayContainer.addEventListener('click', (event) => this.articlesHandler(event))
     this.render()
   }

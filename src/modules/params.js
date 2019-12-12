@@ -54,7 +54,7 @@ const params = {
       first: '.first-word',
       second: '.second-word',
       more: '.and-more',
-      tail: '.word-tail',
+      tail: '.other',
     },
   },
   cardPrototype: '#card-proto',

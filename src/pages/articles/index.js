@@ -51,7 +51,6 @@ const myCollection = new Cards(
   params,
   showError,
 )
-// Methods
 
 window.onresize = () => {
   if (window.innerWidth > 767) mainMenu.close()
