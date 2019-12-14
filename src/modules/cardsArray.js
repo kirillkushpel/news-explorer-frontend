@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-export default class Cards {
+export default class CardsArray {
   constructor(getAllArticles, deleteArticle, {
     cardPrototype, cardsArray, card, month,
   }, showError) {

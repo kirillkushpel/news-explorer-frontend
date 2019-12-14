@@ -7,7 +7,7 @@ import ModalsHandler from '../../blocks/main/modaloperator'
 import AuthForm from '../../blocks/main/auth-form/auth-form'
 import Backend from '../../modules/backend'
 import MenuRender from '../../modules/menu-render'
-import Cards from '../../modules/cardsArray'
+import CardsArray from '../../modules/cardsArray'
 import ShowError from '../../blocks/main/error/error'
 
 const modalOperator = new ModalsHandler(document.body, document.querySelector('#scroll'))
@@ -45,7 +45,7 @@ const userMenu = new MenuRender(
 )
 userMenu.init()
 
-const myCollection = new Cards(
+const myCollection = new CardsArray(
   backend.getAllArticles.bind(backend),
   backend.deleteArticle.bind(backend),
   params,
