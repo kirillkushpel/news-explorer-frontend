@@ -1,8 +1,8 @@
-@import url(./__body/card__body.css);
+@import url(./__content/card__content.css);
 @import url(./__date/card__date.css);
 @import url(./__icon/card__icon.css);
 @import url(./__keyword/card__keyword.css);
-@import url(./__img/card__img.css);
+@import url(./__img/card_img.css);
 @import url(./__src/card__src.css);
 @import url(./__text/card__text.css);
 @import url(./__title/card__title.css);

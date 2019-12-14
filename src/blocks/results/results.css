@@ -1,4 +1,4 @@
-@import url(./__news/results__news.css);
+@import url(./__news/results__container.css);
 @import url(./__title/results__title.css);
 @import url(./__button/results__button.css);
 
@@ -6,6 +6,10 @@
   background-color: #f5f6f7;
   padding-top: 80px;
   padding-bottom: 80px;
+}
+
+.results_hide {
+  display: none;
 }
 
 @media screen and (max-width: 1023px) {

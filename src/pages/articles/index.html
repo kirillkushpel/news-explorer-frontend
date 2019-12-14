@@ -1,207 +1,163 @@
 <!DOCTYPE html>
 <html lang="ru">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="author" content="Kirill Kushpel">
+        <meta name="description" content="Diploma project / Articles saver">
+        <title>News Explorer / Сохранённые статьи</title>
+        <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.articles.css %>">
+        <link rel="icon" href="../<%= require('../../images/favicon.png')%>" type="image/png">
+      </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="author" content="KIrill Kushpel">
-  <meta name="description" content="Diploma project / Articles saver">
-  <title>News Explorer / Сохранённые статьи</title>
-  <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.articles.css %>">
-  <link rel="icon" href="../<%= require('../../images/favicon.png')%>" type="image/png">
-</head>
-
-<body>
-  <div class="root">
-    <header class="header header_white">
-      <nav class="menu menu_black">
-        <a href="../" class="menu__logo menu__logo_black">News Explorer</a>
-        <div class="menu__mobile menu__mobile_black" id="mobile-menu"></div>
-        <ul class="menu__items">
-          <li class="menu__items-single-item">
-            <a href="../" class="menu__link menu__link_black">Главная</a>
-          </li>
-          <li class="menu__items-single-item">
-            <a href="../about/" class="menu__link  menu__link_black">О проекте</a>
-          </li>
-          <li class="menu__items-single-item menu__items-single-item_selected-black"><a href="./"
-              class="menu__link menu__link_selected-black">Сохраненные
-              статьи</a></li>
-          <li class="menu__items-single-item">
-            <span class="menu__link menu__link_logged  menu__link_logged-black">
-              Юзер <span class="menu__logout menu__logout_black"></span>
-            </span>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <section class="saved-title">
-      <h5 class="saved-title__subtitle">Сохранённые статьи</h5>
-      <h1 class="saved-title__header">Юзер, у вас 5 сохраненных статей</h1>
-      <p class="saved-title__keywords">По ключевым словам: <b>Природа, Тайга</b> и <b>2 другим</b></p>
-    </section>
-    <main class="storage">
-      <a href="#" class="card">
-        <div class="card__body">
-          <div class="card__img"></div>
-          <div class="card__icon card__icon_bin"></div>
-          <p class="card__warning">Убрать из сохраненных</p>
-          <p class="card__keyword">Тайга</p>
-          <div class="card__wrapper">
-            <p class="card__date">2 августа, 2019</p>
-            <h4 class="card__title">What is Lorem Ipsum?</h4>
-            <p class="card__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-              leap into electronic typesetting, remaining essentially unchanged.
+      <body>
+      <div id="scroll" class="scroll-lock">
+        <div class="root">
+          <header class="header header_white">
+            <nav class="menu menu_black">
+              <a href="../" class="menu__logo menu__logo_black">News Explorer</a>
+              <div class="menu__mobile menu__mobile_black" id="mobile-menu"></div>
+              <ul class="menu__items">
+                <li class="menu__items-single-item">
+                  <a href="../" class="menu__link menu__link_black">Главная</a>
+                </li>
+                <li class="menu__items-single-item">
+                  <a href="../about/" class="menu__link  menu__link_black">О проекте</a>
+                </li>
+                <li class="menu__items-single-item menu__items-single-item_selected-black" id="menu-saved-articles">
+                  <a href="./" class="menu__link menu__link_selected-black">Сохраненные статьи</a>
+                </li>
+                <li class="menu__items-single-item">
+              <span class="menu__link menu__link_logged  menu__link_logged-black" id="user-area">
+                <span id="user-name"></span>
+                <span class="menu__logout menu__logout_black"></span>
+              </span>
+                </li>
+              </ul>
+            </nav>
+          </header>
+          <section class="saved-title">
+            <h5 class="saved-title__subtitle">Сохранённые статьи</h5>
+            <h1 class="saved-title__header">, у вас <span class="articles-count"></span></h1>
+            <p class="saved-title__keywords">
+              По ключевым словам: <b><span class="first-word"></span><span class="second-word"></span></b><span
+              class="other"> и <b><span class="and-more"></span>
+              другим</b></span></p>
+          </section>
+          <main class="storage">
+            <template id="card-proto">
+              <a href="#" class="card">
+                <div class="card__content">
+                  <div class="card__img"></div>
+                  <div class="card__icon card__icon_bin"></div>
+                  <p class="card__warning">Убрать из сохраненных</p>
+                  <p class="card__keyword"></p>
+                  <div class="card__wrapper">
+                    <p class="card__date"></p>
+                    <h4 class="card__title"></h4>
+                    <p class="card__text"></p>
+                  </div>
+                </div>
+                <p class="card__src"></p>
+              </a>
+            </template>
+          </main>
+          <footer class="footer">
+            <p class="footer__legal">© 2019 kirillkushpel</p>
+            <nav>
+              <ul class="footer__menu">
+                <li class="footer__menu-item"><a href="../">Главная</a></li>
+                <li class="footer__menu-item"><a href="../about/">О проекте</a></li>
+                <li class="footer__menu-item"><a href="https://praktikum.yandex.ru" target="_blank">Яндекс.Практикум</a>
+                </li>
+              </ul>
+            </nav>
+            <p class="footer__links">
+              <a href="https://github.com/kirillkushpel/" class="footer__social-icon" target="_blank">
+                <img src="../<%= require('../../images/social/git.svg')%>" alt="GitHub Logo">
+              </a>
+              <a href="https://facebook.com" class="footer__social-icon" target="_blank">
+                <img src="../<%= require('../../images/social/facebook.svg')%>" alt="Facebook Logo">
+              </a>
             </p>
+          </footer>
+        </div>
+
+        <div id="modals">
+          <section class="service-wrapper service-wrapper_hide" id="login-form">
+            <form class="auth-form" name="login">
+              <div class="auth-form__close" id="close-login-form"></div>
+              <h4 class="auth-form__title">Вход</h4>
+              <span class="auth-form__subtitle">E-mail</span>
+              <input class="auth-form__input" name="email" id="email" type="email" placeholder="Введите почту" required>
+              <span class="auth-form__error-message  auth-form__error-message_hide" id="error-email">
+            Введите корректный адрес e-mail
+          </span>
+              <span class="auth-form__subtitle">Пароль</span>
+              <input class="auth-form__input" name="password" id="password" type="password" placeholder="Введите пароль"
+                     required>
+              <span class="auth-form__error-message auth-form__error-message_hide" id="error-password">
+            Поле не может быть пустым!
+          </span>
+              <span class="auth-form__error-message auth-form__error-message_usr-exists  auth-form__error-message_hide"
+                    id="login-fatal">
+            Неправильный логин или пароль
+          </span>
+              <button class="button auth-form__button" name="login-button" type="submit">Войти</button>
+              <span class="auth-form__other-action">
+            или <span class="auth-form__other-action-click" id="open-signup-form">Зарегистрироваться</span>
+          </span>
+            </form>
+          </section>
+
+          <section class="service-wrapper service-wrapper_hide" id="signup-form">
+            <form class="auth-form" name="signup">
+              <div class="auth-form__close" id="close-signup-form"></div>
+              <h4 class="auth-form__title">Регистрация</h4>
+              <span class="auth-form__subtitle">E-mail</span>
+              <input class="auth-form__input" name="email" id="usermail" placeholder="Введите почту" type="email" required>
+              <span class="auth-form__error-message auth-form__error-message_hide" id="error-usermail">Введите корректный
+            адрес e-mail</span>
+              <span class="auth-form__subtitle">Пароль</span>
+              <input class="auth-form__input" name="password" id="userpassword" type="password" placeholder="Введите пароль"
+                     minlength="8" required>
+              <span class="auth-form__error-message auth-form__error-message_hide" id="error-userpassword">
+            Длина пароля должна быть 8 или более символов
+          </span>
+              <span class="auth-form__subtitle">Имя</span>
+              <input class="auth-form__input" name="user-name" id="username" placeholder="Введите свое имя" required
+                     minlength="2" pattern="[A-Za-zА-Яа-я]{2,}">
+              <span class="auth-form__error-message auth-form__error-message_hide" id="error-username">
+            Имя должно и содержать только буквы (2 и более)
+          </span>
+              <span class="auth-form__error-message auth-form__error-message_usr-exists auth-form__error-message_hide"
+                    id="signup-fatal">
+            Такой пользователь уже есть
+          </span>
+              <button class="button auth-form__button" name="signup-button" type="submit">Зарегистрироваться</button>
+              <span class="auth-form__other-action">
+            или <span class="auth-form__other-action-click" id="open-login-form">Войти</span>
+          </span>
+            </form>
+          </section>
+
+          <section class="service-wrapper service-wrapper_hide" id="signup-success">
+            <form class="auth-form" name="success">
+              <div class="auth-form__close" id="close-signup-success-form"></div>
+              <h4 class="auth-form__title">Пользователь успешно зарегистрирован!</h4>
+              <span class="auth-form__other-action auth-form__other-action_left">
+            <span class="auth-form__other-action-click" id="open-login-modal">Выполнить вход</span>
+          </span>
+            </form>
+          </section>
+          <div class="overlay"></div>
+          <div class="error" id="server-fail">
+            <div class="error__hide"></div>
+            <p class="error__message" id="server-fail-message"></p>
           </div>
         </div>
-        <p class="card__src">lipsum.com</p>
-      </a>
-      <a href="#" class="card">
-        <div class="card__body">
-          <div class="card__img"></div>
-          <div class="card__icon card__icon_bin"></div>
-          <p class="card__warning">Убрать из сохраненных</p>
-          <p class="card__keyword">Ночь</p>
-          <div class="card__wrapper">
-            <p class="card__date">2 августа, 2019</p>
-            <h4 class="card__title">What is Lorem Ipsum?</h4>
-            <p class="card__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-              leap into electronic typesetting, remaining essentially unchanged.
-            </p>
-          </div>
-        </div>
-        <p class="card__src">lipsum.com</p>
-      </a>
-      <a href="#" class="card">
-        <div class="card__body">
-          <div class="card__img"></div>
-          <div class="card__icon card__icon_bin"></div>
-          <p class="card__warning">Убрать из сохраненных</p>
-          <p class="card__keyword">Улица</p>
-          <div class="card__wrapper">
-            <p class="card__date">2 августа, 2019</p>
-            <h4 class="card__title">What is Lorem Ipsum?</h4>
-            <p class="card__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-              leap into electronic typesetting, remaining essentially unchanged.
-            </p>
-          </div>
-        </div>
-        <p class="card__src">lipsum.com</p>
-      </a>
-      <a href="#" class="card">
-        <div class="card__body">
-          <div class="card__img"></div>
-          <div class="card__icon card__icon_bin"></div>
-          <p class="card__warning">Убрать из сохраненных</p>
-          <p class="card__keyword">Фонарь</p>
-          <div class="card__wrapper">
-            <p class="card__date">2 августа, 2019</p>
-            <h4 class="card__title">What is Lorem Ipsum?</h4>
-            <p class="card__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-              leap into electronic typesetting, remaining essentially unchanged.
-            </p>
-          </div>
-        </div>
-        <p class="card__src">lipsum.com</p>
-      </a>
-    </main>
-    <footer class="footer">
-      <p class="footer__legal">© 2019 Kirill Kushpel</p>
-      <nav>
-        <ul class="footer__menu">
-          <li class="footer__menu-item"><a href="../">Главная</a></li>
-          <li class="footer__menu-item"><a href="../about/">О проекте</a></li>
-          <li class="footer__menu-item"><a href="https://praktikum.yandex.ru" target="_blank">Яндекс.Практикум</a></li>
-        </ul>
-      </nav>
-      <p class="footer__links">
-        <a href="https://github.com/kirillkushpel/" class="footer__social-icon" target="_blank">
-          <img src="../<%= require('../../images/social/git.svg')%>" alt="GitHub Logo">
-        </a>
-        <a href="https://facebook.com" class="footer__social-icon" target="_blank">
-          <img src="../<%= require('../../images/social/facebook.svg')%>" alt="Facebook Logo">
-        </a>
-      </p>
-    </footer>
-  </div>
-
-  <div id="modal">
-    <section class="auth auth_hide" id="login-form">
-      <form class="auth-form" name="login">
-        <div class="auth-form__close" id="close-login-form"></div>
-        <h4 class="auth-form__title">Вход</h4>
-        <span class="auth-form__subtitle">E-mail</span>
-        <input class="auth-form__input" name="email" type="email" placeholder="Введите почту" required>
-        <span class="auth-form__error-message" id="error-email-login">
-          Введите корректный email!
-        </span>
-        <span class="auth-form__subtitle">Пароль</span>
-        <input class="auth-form__input" name="password" type="password" placeholder="Введите пароль" required>
-        <span class="auth-form__error-message auth-form__error-message_hide" id="error-password-login">
-          Поле не может быть пустым!
-        </span>
-        <span class="auth-form__error-message auth-form__error-message_usr-exists" id="error-not-logged">
-          Неправильный логин или пароль
-        </span>
-        <button class="button auth-form__button" name="login-button" type="submit" disabled>Войти</button>
-        <span class="auth-form__other-action">
-          или <span class="auth-form__other-action-click" id="open-signup-form">Зарегистрироваться</span>
-        </span>
-      </form>
-    </section>
-
-    <section class="auth auth_hide" id="signup-form">
-      <form class="auth-form" name="signup">
-        <div class="auth-form__close" id="close-signup-form"></div>
-        <h4 class="auth-form__title">Регистрация</h4>
-        <span class="auth-form__subtitle">E-mail</span>
-        <input class="auth-form__input" name="email" placeholder="Введите почту" type="email" required>
-        <span class="auth-form__error-message auth-form__error-message_hide" id="error-email">Введите корректный email!с
-          e-mail</span>
-        <span class="auth-form__subtitle">Пароль</span>
-        <input class="auth-form__input" name="password" type="password" placeholder="Введите пароль" minlength="8"
-          required>
-        <span class="auth-form__error-message" id="error-password">
-          Длина пароля должна быть 8 или более символов
-        </span>
-        <span class="auth-form__subtitle">Имя</span>
-        <input class="auth-form__input" name="name" placeholder="Введите свое имя" required minlength="2">
-        <span class="auth-form__error-message auth-form__error-message_hide" id="error-name">
-          Введите имя!
-        </span>
-        <span class="auth-form__error-message auth-form__error-message_usr-exists" id="error-register">
-          Такой пользователь уже есть
-        </span>
-        <button class="button auth-form__button" name="signup-button" type="submit" disabled>Зарегистрироваться</button>
-        <span class="auth-form__other-action">
-          или <span class="auth-form__other-action-click" id="open-login-form">Войти</span>
-        </span>
-      </form>
-    </section>
-
-    <section class="auth auth_hide" id="signup-ok">
-      <form class="auth-form">
-        <div class="auth-form__close" id="close-signup-ok-form"></div>
-        <h4 class="auth-form__title">Пользователь успешно зарегистрирован!</h4>
-        <span class="auth-form__other-action auth-form__other-action_left">
-          <span class="auth-form__other-action-click" id="open-login-modal">Выполнить вход</span>
-        </span>
-      </form>
-    </section>
-
-    <div class="overlay"></div>
-  </div>
-  <script src="<%= htmlWebpackPlugin.files.chunks.articles.entry %>"></script>
-</body>
-
-</html>
+      </div>
+      <script src="<%= htmlWebpackPlugin.files.chunks.articles.entry %>"></script>
+      </body>
+      </html>

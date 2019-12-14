@@ -1,5 +1,5 @@
 @import url(../../vendor/fonts.css);
-@import url(../../blocks/client/client.css);
+@import url(../../blocks/customers/customers.css);
 @import url(../../blocks/skills/skills.css);
 @import url(../../blocks/slider/slider.css);
 @import url(../../blocks/main/wrapper.css);
@@ -7,4 +7,4 @@
 @import url(../../blocks/main/button/button.css);
 @import url(../../blocks/main/about/about.css);
 @import url(../../blocks/main/footer/footer.css);
-@import url(../../blocks/main/scroll-lock/scroll-lock.css);
+@import url(../../blocks/main/body-noscroll/body-noscroll.css);

@@ -1,4 +1,4 @@
-.client__text {
+.customers__text {
   color: black;
   font-size: 1.12rem;
   line-height: 1.5;
@@ -7,7 +7,7 @@
 }
 
 @media screen and (max-width: 1023px) {
-  .client__text {
+  .customers__text {
     margin: 16px 0 0 0;
     width: 100%;
   }

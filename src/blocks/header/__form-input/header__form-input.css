@@ -14,6 +14,10 @@
   color: #b6bcbf;
 }
 
+.header__form-input:disabled {
+  color: #b6bcbf;
+}
+
 @media screen and (max-width: 767px) {
   .header__form-input {
     margin-left: 0;

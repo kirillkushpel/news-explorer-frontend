@@ -1,0 +1,50 @@
+.error {
+  display: none;
+  position: relative;
+  max-width: 230px;
+  min-width: 230px;
+}
+.error__show {
+  z-index: 999;
+  position: fixed;
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: red;
+  padding: 20px;
+  color: white;
+  cursor: pointer;
+  font-size: 0.87rem;
+  text-align: center;
+}
+
+.error__message {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+.error__message_sub {
+  margin-top: 10px;
+  font-size: 0.75rem;
+  font-weight: normal;
+}
+
+.error__hide{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: -15px;
+  right: -15px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url(../../../images/close_white.svg);
+  cursor: pointer;
+  background-color: red;
+}

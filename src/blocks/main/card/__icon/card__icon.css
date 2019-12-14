@@ -1,5 +1,5 @@
 @import url(./_marked/card__icon_marked.css);
-@import url(./_logged/card__icon_logged.css);
+@import url(./_logged/card__icon_saved.css);
 @import url(./_bin/card__icon_bin.css);
 
 .card__icon {

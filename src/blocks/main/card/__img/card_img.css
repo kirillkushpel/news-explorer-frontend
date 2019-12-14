@@ -1,9 +1,11 @@
 .card__img {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(../../../../images/card_mock.png);
+  background-position: center;
+  background-image: url("");
   height: 272px;
-  border-radius: 16px 16px 0 0;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
 @media screen and (max-width: 1023px) {

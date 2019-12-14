@@ -14,3 +14,7 @@
 .auth-form__input::placeholder {
   color: #cccccc;
 }
+
+.auth-form__input:disabled {
+  color: #cccccc;
+}
