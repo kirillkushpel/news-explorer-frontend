@@ -77,7 +77,7 @@ export default class AuthForm {
     this.disableSubmitButton()
     this.disableInputs()
     this._inputs.forEach((item) => {
-      userToSend[item.name === 'username' ? 'name' : item.name] = item.value
+      userToSend[item.name === 'user-name' ? 'name' : item.name] = item.value
     })
     this.serverHandler(userToSend)
       .then(() => {
